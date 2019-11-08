@@ -13,3 +13,5 @@ results = db.characters.find()
 
 for r in results:
     scrape_character_page(r['name'].lower())
+
+#poop
