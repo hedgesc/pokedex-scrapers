@@ -9,7 +9,7 @@ def scrape_character_page(name):
 
 client = MongoClient(host='localhost', port=27017)
 db = client.pokedex
-results = db.characters.find()
+results = db.characters.find({ 'altForm': '' })
 
 for r in results:
     scrape_character_page(r['name'].lower())
