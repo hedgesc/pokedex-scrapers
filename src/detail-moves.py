@@ -35,9 +35,10 @@ class CharacterMove:
         self.moveId = self.generate_moveId(name)
         self.name = name
         self.isSuggested = False
-        self.color = ""
+        self.type = ""
         self.power = 0
         self.accuracy = 0
+        self.pp = 0
 
     def generate_moveId(self, name):
         return name\
@@ -49,6 +50,7 @@ class CharacterMove:
 
 def get_page(url):
     request = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+
     response = urllib.request.urlopen(request)
     return response.read()
 
@@ -57,18 +59,10 @@ def make_detail_url(name):
     return 'https://pokemondb.net/pokedex/' + name
 
 
-def make_detail_moves_by_gen_url(name, gen):
-    return make_detail_url(name) + '/moves/{0}'.format(gen)
 
 
 def get_detail_page(name):
     url = make_detail_url(name)
-    page = BeautifulSoup(get_page(url), "html.parser")
-    return page
-
-
-def get_detail_moves_by_gen_page(name, gen):
-    url = make_detail_moves_by_gen_url(name, gen)
     page = BeautifulSoup(get_page(url), "html.parser")
     return page
 
@@ -83,17 +77,17 @@ def get_nameId(name):
         .lower()
 
 
-def get_game_detail(gameId):
-    if gameId in game_generations:
-        return game_generations[gameId]
-    
-    game = db.games.find_one({"gameId": gameId})
-    game_generations[gameId] = game
-
-    return game_generations[gameId]
+def make_detail_moves_by_gen_url(name, gen):
+    return make_detail_url(name) + '/moves/{0}'.format(gen)
 
 
-def scrape_moves(game, page):
+def get_detail_moves_by_gen_page(name, gen):
+    url = make_detail_moves_by_gen_url(name, gen)
+    page = BeautifulSoup(get_page(url), "html.parser")
+    return page
+
+
+def scrape_moves(page):
     # find out which tabs are on this page
     # ex: Red/Blue, Yellow
     # these should both match to Red/Blue/Yellow
@@ -101,9 +95,8 @@ def scrape_moves(game, page):
     moves = {}
     
     for tab in page.select(".tabs-tab"):
-        if tab.get_text() in game["name"]:
-            tab_data = page.select_one(tab.attrs["href"])
-            scrape_moves_data(tab_data, moves)
+        tab_data = page.select_one(tab.attrs["href"])
+        scrape_moves_data(tab_data, moves)
 
     return list(moves.values())
 
@@ -119,15 +112,25 @@ def scrape_moves_data(tab, moves):
             for row in tbl.select("tbody > tr"):
                 columns = row.find_all("td")
                 
-                m = CharacterMove(columns[1].get_text())
+                m_name = columns[1].get_text()
+                m = CharacterMove(m_name)
                 
-                move_type = columns[2].select_one("a").get_text()
-                m.color = type_colors[move_type]
+                m.type = columns[2].select_one("a").get_text()
                 m.power = text_to_int(columns[4].get_text())
-                m.accuracy = text_to_int(columns[5].get_text())
+                m.accuracy = text_to_int(columns[5].get_text())               
 
                 if not (m.moveId in moves):
                     moves[m.moveId] = m.__dict__
+
+
+def get_game_detail(gameId):
+    if gameId in game_generations:
+        return game_generations[gameId]
+    
+    game = db.games.find_one({"gameId": gameId})
+    game_generations[gameId] = game
+
+    return game_generations[gameId]
 
 
 def text_to_int(text):
@@ -146,23 +149,42 @@ ctr = 0
 
 for c in results:
     c_name = c["name"]
+    c_nameId = c["nameId"]
+
     print(c_name)
 
-    nameId = get_nameId(c_name)
-    
-    for i, g in enumerate(c["games"]):
-        g_id = g["gameId"]
-        g_detail = get_game_detail(g_id)
-        page = get_detail_moves_by_gen_page(nameId, g_detail["generation"])
-        moves = scrape_moves(g_detail, page)
+    for i in range(1, 8):
+        try:
+            page = get_detail_moves_by_gen_page(c_nameId, i)
+        except:
+            continue
         
+        moves = scrape_moves(page)
+
+        if not moves:
+            continue
+
+        print('-- Generation {0}'.format(i))
+
         result = db.character_moves.update_many(
-            { "name": c_name, "gameId": g_id },
-            { "$set": { "moves": moves } },
+            { "nameId": c_nameId, "generation": i },
+            { 
+                "$set": { 
+                    "nameId": c_nameId, 
+                    "name": c_name,
+                    "generation": i,
+                    "moves": moves 
+                } 
+            },
             upsert=True)
         
-        print(g_id, result.matched_count)
 
+        if not (result.upserted_id is None):
+            print('---- inserted 1 document')
+        elif (result.modified_count > 0):
+            print('---- modified {0} documents'.format(result.modified_count))
+        else:
+            print('---- no changes')
 
     ctr += 1
     print("{0}/{1} {2:.1%}".format(ctr, tot, ctr / tot))
