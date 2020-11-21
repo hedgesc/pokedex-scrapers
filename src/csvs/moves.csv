@@ -1,0 +1,742 @@
+name_id,name,category,power,accuracy,pp,generation,type
+absorb,"Absorb",special,20,100,25,1,Grass
+acid,"Acid",special,40,100,30,1,Poison
+acid-armor,"Acid Armor",status,,,20,1,Poison
+agility,"Agility",status,,,30,1,Psychic
+amnesia,"Amnesia",status,,,20,1,Psychic
+aurora-beam,"Aurora Beam",special,65,100,20,1,Ice
+barrage,"Barrage",physical,15,85,20,1,Normal
+barrier,"Barrier",status,,,20,1,Psychic
+bide,"Bide",physical,,,10,1,Normal
+bind,"Bind",physical,15,85,20,1,Normal
+bite,"Bite",physical,60,100,25,1,Dark
+blizzard,"Blizzard",special,110,70,5,1,Ice
+body-slam,"Body Slam",physical,85,100,15,1,Normal
+bone-club,"Bone Club",physical,65,85,20,1,Ground
+bonemerang,"Bonemerang",physical,50,90,10,1,Ground
+bubble,"Bubble",special,40,100,30,1,Water
+bubble-beam,"Bubble Beam",special,65,100,20,1,Water
+clamp,"Clamp",physical,35,85,10,1,Water
+comet-punch,"Comet Punch",physical,18,85,15,1,Normal
+confuse-ray,"Confuse Ray",status,,100,10,1,Ghost
+confusion,"Confusion",special,50,100,25,1,Psychic
+constrict,"Constrict",physical,10,100,35,1,Normal
+conversion,"Conversion",status,,,30,1,Normal
+counter,"Counter",physical,,100,20,1,Fighting
+crabhammer,"Crabhammer",physical,100,90,10,1,Water
+cut,"Cut",physical,50,95,30,1,Normal
+defense-curl,"Defense Curl",status,,,40,1,Normal
+dig,"Dig",physical,80,100,10,1,Ground
+disable,"Disable",status,,100,20,1,Normal
+dizzy-punch,"Dizzy Punch",physical,70,100,10,1,Normal
+double-kick,"Double Kick",physical,30,100,30,1,Fighting
+double-slap,"Double Slap",physical,15,85,10,1,Normal
+double-team,"Double Team",status,,,15,1,Normal
+double-edge,"Double-Edge",physical,120,100,15,1,Normal
+dragon-rage,"Dragon Rage",special,,100,10,1,Dragon
+dream-eater,"Dream Eater",special,100,100,15,1,Psychic
+drill-peck,"Drill Peck",physical,80,100,20,1,Flying
+earthquake,"Earthquake",physical,100,100,10,1,Ground
+egg-bomb,"Egg Bomb",physical,100,75,10,1,Normal
+ember,"Ember",special,40,100,25,1,Fire
+explosion,"Explosion",physical,250,100,5,1,Normal
+fire-blast,"Fire Blast",special,110,85,5,1,Fire
+fire-punch,"Fire Punch",physical,75,100,15,1,Fire
+fire-spin,"Fire Spin",special,35,85,15,1,Fire
+fissure,"Fissure",physical,,,5,1,Ground
+flamethrower,"Flamethrower",special,90,100,15,1,Fire
+flash,"Flash",status,,100,20,1,Normal
+fly,"Fly",physical,90,95,15,1,Flying
+focus-energy,"Focus Energy",status,,,30,1,Normal
+fury-attack,"Fury Attack",physical,15,85,20,1,Normal
+fury-swipes,"Fury Swipes",physical,18,80,15,1,Normal
+glare,"Glare",status,,100,30,1,Normal
+growl,"Growl",status,,100,40,1,Normal
+growth,"Growth",status,,,40,1,Normal
+guillotine,"Guillotine",physical,,,5,1,Normal
+gust,"Gust",special,40,100,35,1,Flying
+harden,"Harden",status,,,30,1,Normal
+haze,"Haze",status,,,30,1,Ice
+headbutt,"Headbutt",physical,70,100,15,1,Normal
+high-jump-kick,"High Jump Kick",physical,130,90,10,1,Fighting
+horn-attack,"Horn Attack",physical,65,100,25,1,Normal
+horn-drill,"Horn Drill",physical,,,5,1,Normal
+hydro-pump,"Hydro Pump",special,110,80,5,1,Water
+hyper-beam,"Hyper Beam",special,150,90,5,1,Normal
+hyper-fang,"Hyper Fang",physical,80,90,15,1,Normal
+hypnosis,"Hypnosis",status,,60,20,1,Psychic
+ice-beam,"Ice Beam",special,90,100,10,1,Ice
+ice-punch,"Ice Punch",physical,75,100,15,1,Ice
+jump-kick,"Jump Kick",physical,100,95,10,1,Fighting
+karate-chop,"Karate Chop",physical,50,100,25,1,Fighting
+kinesis,"Kinesis",status,,80,15,1,Psychic
+leech-life,"Leech Life",physical,80,100,10,1,Bug
+leech-seed,"Leech Seed",status,,90,10,1,Grass
+leer,"Leer",status,,100,30,1,Normal
+lick,"Lick",physical,30,100,30,1,Ghost
+light-screen,"Light Screen",status,,,30,1,Psychic
+lovely-kiss,"Lovely Kiss",status,,75,10,1,Normal
+low-kick,"Low Kick",physical,,100,20,1,Fighting
+meditate,"Meditate",status,,,40,1,Psychic
+mega-drain,"Mega Drain",special,40,100,15,1,Grass
+mega-kick,"Mega Kick",physical,120,75,5,1,Normal
+mega-punch,"Mega Punch",physical,80,85,20,1,Normal
+metronome,"Metronome",status,,,10,1,Normal
+mimic,"Mimic",status,,,10,1,Normal
+minimize,"Minimize",status,,,10,1,Normal
+mirror-move,"Mirror Move",status,,,20,1,Flying
+mist,"Mist",status,,,30,1,Ice
+night-shade,"Night Shade",special,,100,15,1,Ghost
+pay-day,"Pay Day",physical,40,100,20,1,Normal
+peck,"Peck",physical,35,100,35,1,Flying
+petal-dance,"Petal Dance",special,120,100,10,1,Grass
+pin-missile,"Pin Missile",physical,25,95,20,1,Bug
+poison-gas,"Poison Gas",status,,90,40,1,Poison
+poison-powder,"Poison Powder",status,,75,35,1,Poison
+poison-sting,"Poison Sting",physical,15,100,35,1,Poison
+pound,"Pound",physical,40,100,35,1,Normal
+psybeam,"Psybeam",special,65,100,20,1,Psychic
+psychic,"Psychic",special,90,100,10,1,Psychic
+psywave,"Psywave",special,,80,15,1,Psychic
+quick-attack,"Quick Attack",physical,40,100,30,1,Normal
+rage,"Rage",physical,20,100,20,1,Normal
+razor-leaf,"Razor Leaf",physical,55,95,25,1,Grass
+razor-wind,"Razor Wind",special,80,100,10,1,Normal
+recover,"Recover",status,,,10,1,Normal
+reflect,"Reflect",status,,,20,1,Psychic
+rest,"Rest",status,,,10,1,Psychic
+roar,"Roar",status,,,20,1,Normal
+rock-slide,"Rock Slide",physical,75,90,10,1,Rock
+rock-throw,"Rock Throw",physical,50,90,15,1,Rock
+rolling-kick,"Rolling Kick",physical,60,85,15,1,Fighting
+sand-attack,"Sand Attack",status,,100,15,1,Ground
+scratch,"Scratch",physical,40,100,35,1,Normal
+screech,"Screech",status,,85,40,1,Normal
+seismic-toss,"Seismic Toss",physical,,100,20,1,Fighting
+self-destruct,"Self-Destruct",physical,200,100,5,1,Normal
+sharpen,"Sharpen",status,,,30,1,Normal
+sing,"Sing",status,,55,15,1,Normal
+skull-bash,"Skull Bash",physical,130,100,10,1,Normal
+sky-attack,"Sky Attack",physical,140,90,5,1,Flying
+slam,"Slam",physical,80,75,20,1,Normal
+slash,"Slash",physical,70,100,20,1,Normal
+sleep-powder,"Sleep Powder",status,,75,15,1,Grass
+sludge,"Sludge",special,65,100,20,1,Poison
+smog,"Smog",special,30,70,20,1,Poison
+smokescreen,"Smokescreen",status,,100,20,1,Normal
+soft-boiled,"Soft-Boiled",status,,,10,1,Normal
+solar-beam,"Solar Beam",special,120,100,10,1,Grass
+sonic-boom,"Sonic Boom",special,,90,20,1,Normal
+spike-cannon,"Spike Cannon",physical,20,100,15,1,Normal
+splash,"Splash",status,,,40,1,Normal
+spore,"Spore",status,,100,15,1,Grass
+stomp,"Stomp",physical,65,100,20,1,Normal
+strength,"Strength",physical,80,100,15,1,Normal
+string-shot,"String Shot",status,,95,40,1,Bug
+struggle,"Struggle",physical,50,100,,1,Normal
+stun-spore,"Stun Spore",status,,75,30,1,Grass
+submission,"Submission",physical,80,80,20,1,Fighting
+substitute,"Substitute",status,,,10,1,Normal
+super-fang,"Super Fang",physical,,90,10,1,Normal
+supersonic,"Supersonic",status,,55,20,1,Normal
+surf,"Surf",special,90,100,15,1,Water
+swift,"Swift",special,60,1000,20,1,Normal
+swords-dance,"Swords Dance",status,,,20,1,Normal
+tackle,"Tackle",physical,40,100,35,1,Normal
+tail-whip,"Tail Whip",status,,100,30,1,Normal
+take-down,"Take Down",physical,90,85,20,1,Normal
+teleport,"Teleport",status,,,20,1,Psychic
+thrash,"Thrash",physical,120,100,10,1,Normal
+thunder,"Thunder",special,110,70,10,1,Electric
+thunder-punch,"Thunder Punch",physical,75,100,15,1,Electric
+thunder-shock,"Thunder Shock",special,40,100,30,1,Electric
+thunder-wave,"Thunder Wave",status,,90,20,1,Electric
+thunderbolt,"Thunderbolt",special,90,100,15,1,Electric
+toxic,"Toxic",status,,90,10,1,Poison
+transform,"Transform",status,,,10,1,Normal
+tri-attack,"Tri Attack",special,80,100,10,1,Normal
+twineedle,"Twineedle",physical,25,100,20,1,Bug
+vine-whip,"Vine Whip",physical,45,100,25,1,Grass
+vise-grip,"Vise Grip",physical,55,100,30,1,Normal
+water-gun,"Water Gun",special,40,100,25,1,Water
+waterfall,"Waterfall",physical,80,100,15,1,Water
+whirlwind,"Whirlwind",status,,,20,1,Normal
+wing-attack,"Wing Attack",physical,60,100,35,1,Flying
+withdraw,"Withdraw",status,,,40,1,Water
+wrap,"Wrap",physical,15,90,20,1,Normal
+aeroblast,"Aeroblast",special,100,95,5,2,Flying
+ancient-power,"Ancient Power",special,60,100,5,2,Rock
+attract,"Attract",status,,100,15,2,Normal
+baton-pass,"Baton Pass",status,,,40,2,Normal
+beat-up,"Beat Up",physical,,100,30,2,Dark
+belly-drum,"Belly Drum",status,,,10,2,Normal
+bone-rush,"Bone Rush",physical,25,90,10,2,Ground
+charm,"Charm",status,,100,20,2,Fairy
+conversion-2,"Conversion 2",status,,,30,2,Normal
+cotton-spore,"Cotton Spore",status,,100,40,2,Grass
+cross-chop,"Cross Chop",physical,100,80,5,2,Fighting
+crunch,"Crunch",physical,80,100,15,2,Dark
+curse,"Curse",status,,,10,2,Ghost
+destiny-bond,"Destiny Bond",status,,,5,2,Ghost
+detect,"Detect",status,,,5,2,Fighting
+dragon-breath,"Dragon Breath",special,60,100,20,2,Dragon
+dynamic-punch,"Dynamic Punch",physical,100,50,5,2,Fighting
+encore,"Encore",status,,100,5,2,Normal
+endure,"Endure",status,,,10,2,Normal
+extreme-speed,"Extreme Speed",physical,80,100,5,2,Normal
+false-swipe,"False Swipe",physical,40,100,40,2,Normal
+feint-attack,"Feint Attack",physical,60,1000,20,2,Dark
+flail,"Flail",physical,,100,15,2,Normal
+flame-wheel,"Flame Wheel",physical,60,100,25,2,Fire
+foresight,"Foresight",status,,,40,2,Normal
+frustration,"Frustration",physical,,100,20,2,Normal
+fury-cutter,"Fury Cutter",physical,40,95,20,2,Bug
+future-sight,"Future Sight",special,120,100,10,2,Psychic
+giga-drain,"Giga Drain",special,75,100,10,2,Grass
+heal-bell,"Heal Bell",status,,,5,2,Normal
+hidden-power,"Hidden Power",special,60,100,15,2,Normal
+icy-wind,"Icy Wind",special,55,95,15,2,Ice
+iron-tail,"Iron Tail",physical,100,75,15,2,Steel
+lock-on,"Lock-On",status,,,5,2,Normal
+mach-punch,"Mach Punch",physical,40,100,30,2,Fighting
+magnitude,"Magnitude",physical,,100,30,2,Ground
+mean-look,"Mean Look",status,,,5,2,Normal
+megahorn,"Megahorn",physical,120,85,10,2,Bug
+metal-claw,"Metal Claw",physical,50,95,35,2,Steel
+milk-drink,"Milk Drink",status,,,10,2,Normal
+mind-reader,"Mind Reader",status,,,5,2,Normal
+mirror-coat,"Mirror Coat",special,,100,20,2,Psychic
+moonlight,"Moonlight",status,,,5,2,Fairy
+morning-sun,"Morning Sun",status,,,5,2,Normal
+mud-slap,"Mud-Slap",special,20,100,10,2,Ground
+nightmare,"Nightmare",status,,100,15,2,Ghost
+octazooka,"Octazooka",special,65,85,10,2,Water
+outrage,"Outrage",physical,120,100,10,2,Dragon
+pain-split,"Pain Split",status,,,20,2,Normal
+perish-song,"Perish Song",status,,,5,2,Normal
+powder-snow,"Powder Snow",special,40,100,25,2,Ice
+present,"Present",physical,,90,15,2,Normal
+protect,"Protect",status,,,10,2,Normal
+psych-up,"Psych Up",status,,,10,2,Normal
+pursuit,"Pursuit",physical,40,100,20,2,Dark
+rain-dance,"Rain Dance",status,,,5,2,Water
+rapid-spin,"Rapid Spin",physical,20,100,40,2,Normal
+return,"Return",physical,,100,20,2,Normal
+reversal,"Reversal",physical,,100,15,2,Fighting
+rock-smash,"Rock Smash",physical,40,100,15,2,Fighting
+rollout,"Rollout",physical,30,90,20,2,Rock
+sacred-fire,"Sacred Fire",physical,100,95,5,2,Fire
+safeguard,"Safeguard",status,,,25,2,Normal
+sandstorm,"Sandstorm",status,,,10,2,Rock
+scary-face,"Scary Face",status,,100,10,2,Normal
+shadow-ball,"Shadow Ball",special,80,100,15,2,Ghost
+sketch,"Sketch",status,,,1,2,Normal
+sleep-talk,"Sleep Talk",status,,,10,2,Normal
+sludge-bomb,"Sludge Bomb",special,90,100,10,2,Poison
+snore,"Snore",special,50,100,15,2,Normal
+spark,"Spark",physical,65,100,20,2,Electric
+spider-web,"Spider Web",status,,,10,2,Bug
+spikes,"Spikes",status,,,20,2,Ground
+spite,"Spite",status,,100,10,2,Ghost
+steel-wing,"Steel Wing",physical,70,90,25,2,Steel
+sunny-day,"Sunny Day",status,,,5,2,Fire
+swagger,"Swagger",status,,85,15,2,Normal
+sweet-kiss,"Sweet Kiss",status,,75,10,2,Fairy
+sweet-scent,"Sweet Scent",status,,,20,2,Normal
+synthesis,"Synthesis",status,,,5,2,Grass
+thief,"Thief",physical,60,100,25,2,Dark
+triple-kick,"Triple Kick",physical,10,90,10,2,Fighting
+twister,"Twister",special,40,100,20,2,Dragon
+vital-throw,"Vital Throw",physical,70,1000,10,2,Fighting
+whirlpool,"Whirlpool",special,35,85,15,2,Water
+zap-cannon,"Zap Cannon",special,120,50,5,2,Electric
+aerial-ace,"Aerial Ace",physical,60,1000,20,3,Flying
+air-cutter,"Air Cutter",special,60,95,25,3,Flying
+arm-thrust,"Arm Thrust",physical,15,100,20,3,Fighting
+aromatherapy,"Aromatherapy",status,,,5,3,Grass
+assist,"Assist",status,,,20,3,Normal
+astonish,"Astonish",physical,30,100,15,3,Ghost
+blast-burn,"Blast Burn",special,150,90,5,3,Fire
+blaze-kick,"Blaze Kick",physical,85,90,10,3,Fire
+block,"Block",status,,,5,3,Normal
+bounce,"Bounce",physical,85,85,5,3,Flying
+brick-break,"Brick Break",physical,75,100,15,3,Fighting
+bulk-up,"Bulk Up",status,,,20,3,Fighting
+bullet-seed,"Bullet Seed",physical,25,100,30,3,Grass
+calm-mind,"Calm Mind",status,,,20,3,Psychic
+camouflage,"Camouflage",status,,,20,3,Normal
+charge,"Charge",status,,,20,3,Electric
+cosmic-power,"Cosmic Power",status,,,20,3,Psychic
+covet,"Covet",physical,60,100,25,3,Normal
+crush-claw,"Crush Claw",physical,75,95,10,3,Normal
+dive,"Dive",physical,80,100,10,3,Water
+doom-desire,"Doom Desire",special,140,100,5,3,Steel
+dragon-claw,"Dragon Claw",physical,80,100,15,3,Dragon
+dragon-dance,"Dragon Dance",status,,,20,3,Dragon
+endeavor,"Endeavor",physical,,100,5,3,Normal
+eruption,"Eruption",special,150,100,5,3,Fire
+extrasensory,"Extrasensory",special,80,100,20,3,Psychic
+facade,"Facade",physical,70,100,20,3,Normal
+fake-out,"Fake Out",physical,40,100,10,3,Normal
+fake-tears,"Fake Tears",status,,100,20,3,Dark
+feather-dance,"Feather Dance",status,,100,15,3,Flying
+flatter,"Flatter",status,,100,15,3,Dark
+focus-punch,"Focus Punch",physical,150,100,20,3,Fighting
+follow-me,"Follow Me",status,,,20,3,Normal
+frenzy-plant,"Frenzy Plant",special,150,90,5,3,Grass
+grass-whistle,"Grass Whistle",status,,55,15,3,Grass
+grudge,"Grudge",status,,,5,3,Ghost
+hail,"Hail",status,,,10,3,Ice
+heat-wave,"Heat Wave",special,95,90,10,3,Fire
+helping-hand,"Helping Hand",status,,,20,3,Normal
+howl,"Howl",status,,,40,3,Normal
+hydro-cannon,"Hydro Cannon",special,150,90,5,3,Water
+hyper-voice,"Hyper Voice",special,90,100,10,3,Normal
+ice-ball,"Ice Ball",physical,30,90,20,3,Ice
+icicle-spear,"Icicle Spear",physical,25,100,30,3,Ice
+imprison,"Imprison",status,,,10,3,Psychic
+ingrain,"Ingrain",status,,,20,3,Grass
+iron-defense,"Iron Defense",status,,,15,3,Steel
+knock-off,"Knock Off",physical,65,100,20,3,Dark
+leaf-blade,"Leaf Blade",physical,90,100,15,3,Grass
+luster-purge,"Luster Purge",special,70,100,5,3,Psychic
+magic-coat,"Magic Coat",status,,,15,3,Psychic
+magical-leaf,"Magical Leaf",special,60,1000,20,3,Grass
+memento,"Memento",status,,100,10,3,Dark
+metal-sound,"Metal Sound",status,,85,40,3,Steel
+meteor-mash,"Meteor Mash",physical,90,90,10,3,Steel
+mist-ball,"Mist Ball",special,70,100,5,3,Psychic
+mud-shot,"Mud Shot",special,55,95,15,3,Ground
+mud-sport,"Mud Sport",status,,,15,3,Ground
+muddy-water,"Muddy Water",special,90,85,10,3,Water
+nature-power,"Nature Power",status,,,20,3,Normal
+needle-arm,"Needle Arm",physical,60,100,15,3,Grass
+odor-sleuth,"Odor Sleuth",status,,,40,3,Normal
+overheat,"Overheat",special,130,90,5,3,Fire
+poison-fang,"Poison Fang",physical,50,100,15,3,Poison
+poison-tail,"Poison Tail",physical,50,100,25,3,Poison
+psycho-boost,"Psycho Boost",special,140,90,5,3,Psychic
+recycle,"Recycle",status,,,10,3,Normal
+refresh,"Refresh",status,,,20,3,Normal
+revenge,"Revenge",physical,60,100,10,3,Fighting
+rock-blast,"Rock Blast",physical,25,90,10,3,Rock
+rock-tomb,"Rock Tomb",physical,60,95,15,3,Rock
+role-play,"Role Play",status,,,15,3,Psychic
+sand-tomb,"Sand Tomb",physical,35,85,15,3,Ground
+secret-power,"Secret Power",physical,70,100,20,3,Normal
+shadow-punch,"Shadow Punch",physical,60,1000,20,3,Ghost
+sheer-cold,"Sheer Cold",special,,,5,3,Ice
+shock-wave,"Shock Wave",special,60,1000,20,3,Electric
+signal-beam,"Signal Beam",special,75,100,15,3,Bug
+silver-wind,"Silver Wind",special,60,100,5,3,Bug
+skill-swap,"Skill Swap",status,,,10,3,Psychic
+sky-uppercut,"Sky Uppercut",physical,85,90,15,3,Fighting
+slack-off,"Slack Off",status,,,10,3,Normal
+smelling-salts,"Smelling Salts",physical,70,100,10,3,Normal
+snatch,"Snatch",status,,,10,3,Dark
+spit-up,"Spit Up",special,,100,10,3,Normal
+stockpile,"Stockpile",status,,,20,3,Normal
+superpower,"Superpower",physical,120,100,5,3,Fighting
+swallow,"Swallow",status,,,10,3,Normal
+tail-glow,"Tail Glow",status,,,20,3,Bug
+taunt,"Taunt",status,,100,20,3,Dark
+teeter-dance,"Teeter Dance",status,,100,20,3,Normal
+tickle,"Tickle",status,,100,20,3,Normal
+torment,"Torment",status,,100,15,3,Dark
+trick,"Trick",status,,100,10,3,Psychic
+uproar,"Uproar",special,90,100,10,3,Normal
+volt-tackle,"Volt Tackle",physical,120,100,15,3,Electric
+water-pulse,"Water Pulse",special,60,100,20,3,Water
+water-sport,"Water Sport",status,,,15,3,Water
+water-spout,"Water Spout",special,150,100,5,3,Water
+weather-ball,"Weather Ball",special,50,100,10,3,Normal
+will-o-wisp,"Will-O-Wisp",status,,85,15,3,Fire
+wish,"Wish",status,,,10,3,Normal
+yawn,"Yawn",status,,,10,3,Normal
+acupressure,"Acupressure",status,,,30,4,Normal
+air-slash,"Air Slash",special,75,95,20,4,Flying
+aqua-jet,"Aqua Jet",physical,40,100,20,4,Water
+aqua-ring,"Aqua Ring",status,,,20,4,Water
+aqua-tail,"Aqua Tail",physical,90,90,10,4,Water
+assurance,"Assurance",physical,60,100,10,4,Dark
+attack-order,"Attack Order",physical,90,100,15,4,Bug
+aura-sphere,"Aura Sphere",special,80,1000,20,4,Fighting
+avalanche,"Avalanche",physical,60,100,10,4,Ice
+brave-bird,"Brave Bird",physical,120,100,15,4,Flying
+brine,"Brine",special,65,100,10,4,Water
+bug-bite,"Bug Bite",physical,60,100,20,4,Bug
+bug-buzz,"Bug Buzz",special,90,100,10,4,Bug
+bullet-punch,"Bullet Punch",physical,40,100,30,4,Steel
+captivate,"Captivate",status,,100,20,4,Normal
+charge-beam,"Charge Beam",special,50,90,10,4,Electric
+chatter,"Chatter",special,65,100,20,4,Flying
+close-combat,"Close Combat",physical,120,100,5,4,Fighting
+copycat,"Copycat",status,,,20,4,Normal
+cross-poison,"Cross Poison",physical,70,100,20,4,Poison
+crush-grip,"Crush Grip",physical,,100,5,4,Normal
+dark-pulse,"Dark Pulse",special,80,100,15,4,Dark
+dark-void,"Dark Void",status,,50,10,4,Dark
+defend-order,"Defend Order",status,,,10,4,Bug
+defog,"Defog",status,,,15,4,Flying
+discharge,"Discharge",special,80,100,15,4,Electric
+double-hit,"Double Hit",physical,35,90,10,4,Normal
+draco-meteor,"Draco Meteor",special,130,90,5,4,Dragon
+dragon-pulse,"Dragon Pulse",special,85,100,10,4,Dragon
+dragon-rush,"Dragon Rush",physical,100,75,10,4,Dragon
+drain-punch,"Drain Punch",physical,75,100,10,4,Fighting
+earth-power,"Earth Power",special,90,100,10,4,Ground
+embargo,"Embargo",status,,100,15,4,Dark
+energy-ball,"Energy Ball",special,90,100,10,4,Grass
+feint,"Feint",physical,30,100,10,4,Normal
+fire-fang,"Fire Fang",physical,65,95,15,4,Fire
+flare-blitz,"Flare Blitz",physical,120,100,15,4,Fire
+flash-cannon,"Flash Cannon",special,80,100,10,4,Steel
+fling,"Fling",physical,,100,10,4,Dark
+focus-blast,"Focus Blast",special,120,70,5,4,Fighting
+force-palm,"Force Palm",physical,60,100,10,4,Fighting
+gastro-acid,"Gastro Acid",status,,100,10,4,Poison
+giga-impact,"Giga Impact",physical,150,90,5,4,Normal
+grass-knot,"Grass Knot",special,,100,20,4,Grass
+gravity,"Gravity",status,,,5,4,Psychic
+guard-swap,"Guard Swap",status,,,10,4,Psychic
+gunk-shot,"Gunk Shot",physical,120,80,5,4,Poison
+gyro-ball,"Gyro Ball",physical,,100,5,4,Steel
+hammer-arm,"Hammer Arm",physical,100,90,10,4,Fighting
+head-smash,"Head Smash",physical,150,80,5,4,Rock
+heal-block,"Heal Block",status,,,15,4,Psychic
+heal-order,"Heal Order",status,,,10,4,Bug
+healing-wish,"Healing Wish",status,,,10,4,Psychic
+heart-swap,"Heart Swap",status,,,10,4,Psychic
+ice-fang,"Ice Fang",physical,65,95,15,4,Ice
+ice-shard,"Ice Shard",physical,40,100,30,4,Ice
+iron-head,"Iron Head",physical,80,100,15,4,Steel
+judgment,"Judgment",special,100,100,10,4,Normal
+last-resort,"Last Resort",physical,140,100,5,4,Normal
+lava-plume,"Lava Plume",special,80,100,15,4,Fire
+leaf-storm,"Leaf Storm",special,130,90,5,4,Grass
+lucky-chant,"Lucky Chant",status,,,30,4,Normal
+lunar-dance,"Lunar Dance",status,,,10,4,Psychic
+magma-storm,"Magma Storm",special,100,75,5,4,Fire
+magnet-bomb,"Magnet Bomb",physical,60,1000,20,4,Steel
+magnet-rise,"Magnet Rise",status,,,10,4,Electric
+me-first,"Me First",status,,,20,4,Normal
+metal-burst,"Metal Burst",physical,,100,10,4,Steel
+miracle-eye,"Miracle Eye",status,,,40,4,Psychic
+mirror-shot,"Mirror Shot",special,65,85,10,4,Steel
+mud-bomb,"Mud Bomb",special,65,85,10,4,Ground
+nasty-plot,"Nasty Plot",status,,,20,4,Dark
+natural-gift,"Natural Gift",physical,,100,15,4,Normal
+night-slash,"Night Slash",physical,70,100,15,4,Dark
+ominous-wind,"Ominous Wind",special,60,100,5,4,Ghost
+payback,"Payback",physical,50,100,10,4,Dark
+pluck,"Pluck",physical,60,100,20,4,Flying
+poison-jab,"Poison Jab",physical,80,100,20,4,Poison
+power-gem,"Power Gem",special,80,100,20,4,Rock
+power-swap,"Power Swap",status,,,10,4,Psychic
+power-trick,"Power Trick",status,,,10,4,Psychic
+power-whip,"Power Whip",physical,120,85,10,4,Grass
+psycho-cut,"Psycho Cut",physical,70,100,20,4,Psychic
+psycho-shift,"Psycho Shift",status,,90,10,4,Psychic
+punishment,"Punishment",physical,,100,5,4,Dark
+roar-of-time,"Roar of Time",special,150,90,5,4,Dragon
+rock-climb,"Rock Climb",physical,90,85,20,4,Normal
+rock-polish,"Rock Polish",status,,,20,4,Rock
+rock-wrecker,"Rock Wrecker",physical,150,90,5,4,Rock
+roost,"Roost",status,,,10,4,Flying
+seed-bomb,"Seed Bomb",physical,80,100,15,4,Grass
+seed-flare,"Seed Flare",special,120,85,5,4,Grass
+shadow-claw,"Shadow Claw",physical,70,100,15,4,Ghost
+shadow-force,"Shadow Force",physical,120,100,5,4,Ghost
+shadow-sneak,"Shadow Sneak",physical,40,100,30,4,Ghost
+spacial-rend,"Spacial Rend",special,100,95,5,4,Dragon
+stealth-rock,"Stealth Rock",status,,,20,4,Rock
+stone-edge,"Stone Edge",physical,100,80,5,4,Rock
+sucker-punch,"Sucker Punch",physical,70,100,5,4,Dark
+switcheroo,"Switcheroo",status,,100,15,4,Dark
+tailwind,"Tailwind",status,,,30,4,Flying
+thunder-fang,"Thunder Fang",physical,65,95,15,4,Electric
+toxic-spikes,"Toxic Spikes",status,,,20,4,Poison
+trick-room,"Trick Room",status,,,5,4,Psychic
+trump-card,"Trump Card",special,,1000,5,4,Normal
+u-turn,"U-turn",physical,70,100,20,4,Bug
+vacuum-wave,"Vacuum Wave",special,40,100,30,4,Fighting
+wake-up-slap,"Wake-Up Slap",physical,70,100,10,4,Fighting
+wood-hammer,"Wood Hammer",physical,120,100,15,4,Grass
+worry-seed,"Worry Seed",status,,100,10,4,Grass
+wring-out,"Wring Out",special,,100,5,4,Normal
+x-scissor,"X-Scissor",physical,80,100,15,4,Bug
+zen-headbutt,"Zen Headbutt",physical,80,90,15,4,Psychic
+acid-spray,"Acid Spray",special,40,100,20,5,Poison
+acrobatics,"Acrobatics",physical,55,100,15,5,Flying
+after-you,"After You",status,,,15,5,Normal
+ally-switch,"Ally Switch",status,,,15,5,Psychic
+autotomize,"Autotomize",status,,,15,5,Steel
+bestow,"Bestow",status,,,15,5,Normal
+blue-flare,"Blue Flare",special,130,85,5,5,Fire
+bolt-strike,"Bolt Strike",physical,130,85,5,5,Electric
+bulldoze,"Bulldoze",physical,60,100,20,5,Ground
+chip-away,"Chip Away",physical,70,100,20,5,Normal
+circle-throw,"Circle Throw",physical,60,90,10,5,Fighting
+clear-smog,"Clear Smog",special,50,,15,5,Poison
+coil,"Coil",status,,,20,5,Poison
+cotton-guard,"Cotton Guard",status,,,10,5,Grass
+dragon-tail,"Dragon Tail",physical,60,90,10,5,Dragon
+drill-run,"Drill Run",physical,80,95,10,5,Ground
+dual-chop,"Dual Chop",physical,40,90,15,5,Dragon
+echoed-voice,"Echoed Voice",special,40,100,15,5,Normal
+electro-ball,"Electro Ball",special,,100,10,5,Electric
+electroweb,"Electroweb",special,55,95,15,5,Electric
+entrainment,"Entrainment",status,,100,15,5,Normal
+fiery-dance,"Fiery Dance",special,80,100,10,5,Fire
+final-gambit,"Final Gambit",special,,100,5,5,Fighting
+fire-pledge,"Fire Pledge",special,80,100,10,5,Fire
+flame-burst,"Flame Burst",special,70,100,15,5,Fire
+flame-charge,"Flame Charge",physical,50,100,20,5,Fire
+foul-play,"Foul Play",physical,95,100,15,5,Dark
+freeze-shock,"Freeze Shock",physical,140,90,5,5,Ice
+frost-breath,"Frost Breath",special,60,90,10,5,Ice
+fusion-bolt,"Fusion Bolt",physical,100,100,5,5,Electric
+fusion-flare,"Fusion Flare",special,100,100,5,5,Fire
+gear-grind,"Gear Grind",physical,50,85,15,5,Steel
+glaciate,"Glaciate",special,65,95,10,5,Ice
+grass-pledge,"Grass Pledge",special,80,100,10,5,Grass
+guard-split,"Guard Split",status,,,10,5,Psychic
+head-charge,"Head Charge",physical,120,100,15,5,Normal
+heal-pulse,"Heal Pulse",status,,,10,5,Psychic
+heart-stamp,"Heart Stamp",physical,60,100,25,5,Psychic
+heat-crash,"Heat Crash",physical,,100,10,5,Fire
+heavy-slam,"Heavy Slam",physical,,100,10,5,Steel
+hex,"Hex",special,65,100,10,5,Ghost
+hone-claws,"Hone Claws",status,,,15,5,Dark
+horn-leech,"Horn Leech",physical,75,100,10,5,Grass
+hurricane,"Hurricane",special,110,70,10,5,Flying
+ice-burn,"Ice Burn",special,140,90,5,5,Ice
+icicle-crash,"Icicle Crash",physical,85,90,10,5,Ice
+incinerate,"Incinerate",special,60,100,15,5,Fire
+inferno,"Inferno",special,100,50,5,5,Fire
+leaf-tornado,"Leaf Tornado",special,65,90,10,5,Grass
+low-sweep,"Low Sweep",physical,65,100,20,5,Fighting
+magic-room,"Magic Room",status,,,10,5,Psychic
+night-daze,"Night Daze",special,85,95,10,5,Dark
+power-split,"Power Split",status,,,10,5,Psychic
+psyshock,"Psyshock",special,80,100,10,5,Psychic
+psystrike,"Psystrike",special,100,100,10,5,Psychic
+quash,"Quash",status,,100,15,5,Dark
+quick-guard,"Quick Guard",status,,,15,5,Fighting
+quiver-dance,"Quiver Dance",status,,,20,5,Bug
+rage-powder,"Rage Powder",status,,,20,5,Bug
+razor-shell,"Razor Shell",physical,75,95,10,5,Water
+reflect-type,"Reflect Type",status,,,15,5,Normal
+relic-song,"Relic Song",special,75,100,10,5,Normal
+retaliate,"Retaliate",physical,70,100,5,5,Normal
+round,"Round",special,60,100,15,5,Normal
+sacred-sword,"Sacred Sword",physical,90,100,20,5,Fighting
+scald,"Scald",special,80,100,15,5,Water
+searing-shot,"Searing Shot",special,100,100,5,5,Fire
+secret-sword,"Secret Sword",special,85,100,10,5,Fighting
+shell-smash,"Shell Smash",status,,,15,5,Normal
+shift-gear,"Shift Gear",status,,,10,5,Steel
+simple-beam,"Simple Beam",status,,100,15,5,Normal
+sky-drop,"Sky Drop",physical,60,100,10,5,Flying
+sludge-wave,"Sludge Wave",special,95,100,10,5,Poison
+smack-down,"Smack Down",physical,50,100,15,5,Rock
+snarl,"Snarl",special,55,95,15,5,Dark
+soak,"Soak",status,,100,20,5,Water
+steamroller,"Steamroller",physical,65,100,20,5,Bug
+stored-power,"Stored Power",special,20,100,10,5,Psychic
+storm-throw,"Storm Throw",physical,60,100,10,5,Fighting
+struggle-bug,"Struggle Bug",special,50,100,20,5,Bug
+synchronoise,"Synchronoise",special,120,100,15,5,Psychic
+tail-slap,"Tail Slap",physical,25,85,10,5,Normal
+techno-blast,"Techno Blast",special,120,100,5,5,Normal
+telekinesis,"Telekinesis",status,,,15,5,Psychic
+v-create,"V-create",physical,180,95,5,5,Fire
+venoshock,"Venoshock",special,65,100,10,5,Poison
+volt-switch,"Volt Switch",special,70,100,20,5,Electric
+water-pledge,"Water Pledge",special,80,100,10,5,Water
+wide-guard,"Wide Guard",status,,,10,5,Rock
+wild-charge,"Wild Charge",physical,90,100,15,5,Electric
+wonder-room,"Wonder Room",status,,,10,5,Psychic
+work-up,"Work Up",status,,,30,5,Normal
+aromatic-mist,"Aromatic Mist",status,,,20,6,Fairy
+baby-doll-eyes,"Baby-Doll Eyes",status,,100,30,6,Fairy
+belch,"Belch",special,120,90,10,6,Poison
+boomburst,"Boomburst",special,140,100,10,6,Normal
+celebrate,"Celebrate",status,,,40,6,Normal
+confide,"Confide",status,,,20,6,Normal
+crafty-shield,"Crafty Shield",status,,,10,6,Fairy
+dazzling-gleam,"Dazzling Gleam",special,80,100,10,6,Fairy
+diamond-storm,"Diamond Storm",physical,100,95,5,6,Rock
+disarming-voice,"Disarming Voice",special,40,1000,15,6,Fairy
+dragon-ascent,"Dragon Ascent",physical,120,100,5,6,Flying
+draining-kiss,"Draining Kiss",special,50,100,10,6,Fairy
+eerie-impulse,"Eerie Impulse",status,,100,15,6,Electric
+electric-terrain,"Electric Terrain",status,,,10,6,Electric
+electrify,"Electrify",status,,,20,6,Electric
+fairy-lock,"Fairy Lock",status,,,10,6,Fairy
+fairy-wind,"Fairy Wind",special,40,100,30,6,Fairy
+fell-stinger,"Fell Stinger",physical,50,100,25,6,Bug
+flower-shield,"Flower Shield",status,,,10,6,Fairy
+flying-press,"Flying Press",physical,100,95,10,6,Fighting
+forests-curse,"Forest's Curse",status,,100,20,6,Grass
+freeze-dry,"Freeze-Dry",special,70,100,20,6,Ice
+geomancy,"Geomancy",status,,,10,6,Fairy
+grassy-terrain,"Grassy Terrain",status,,,10,6,Grass
+happy-hour,"Happy Hour",status,,,30,6,Normal
+hold-back,"Hold Back",physical,40,100,40,6,Normal
+hold-hands,"Hold Hands",status,,,40,6,Normal
+hyperspace-fury,"Hyperspace Fury",physical,100,1000,5,6,Dark
+hyperspace-hole,"Hyperspace Hole",special,80,1000,5,6,Psychic
+infestation,"Infestation",special,20,100,20,6,Bug
+ion-deluge,"Ion Deluge",status,,,25,6,Electric
+kings-shield,"King's Shield",status,,,10,6,Steel
+lands-wrath,"Land's Wrath",physical,90,100,10,6,Ground
+light-of-ruin,"Light of Ruin",special,140,90,5,6,Fairy
+magnetic-flux,"Magnetic Flux",status,,,20,6,Electric
+mat-block,"Mat Block",status,,,10,6,Fighting
+misty-terrain,"Misty Terrain",status,,,10,6,Fairy
+moonblast,"Moonblast",special,95,100,15,6,Fairy
+mystical-fire,"Mystical Fire",special,75,100,10,6,Fire
+noble-roar,"Noble Roar",status,,100,30,6,Normal
+nuzzle,"Nuzzle",physical,20,100,20,6,Electric
+oblivion-wing,"Oblivion Wing",special,80,100,10,6,Flying
+origin-pulse,"Origin Pulse",special,110,85,10,6,Water
+parabolic-charge,"Parabolic Charge",special,65,100,20,6,Electric
+parting-shot,"Parting Shot",status,,100,20,6,Dark
+petal-blizzard,"Petal Blizzard",physical,90,100,15,6,Grass
+phantom-force,"Phantom Force",physical,90,100,10,6,Ghost
+play-nice,"Play Nice",status,,,20,6,Normal
+play-rough,"Play Rough",physical,90,90,10,6,Fairy
+powder,"Powder",status,,100,20,6,Bug
+power-up-punch,"Power-Up Punch",physical,40,100,10,6,Fighting
+precipice-blades,"Precipice Blades",physical,120,85,10,6,Ground
+rototiller,"Rototiller",status,,,10,6,Ground
+spiky-shield,"Spiky Shield",status,,,10,6,Grass
+steam-eruption,"Steam Eruption",special,110,95,5,6,Water
+sticky-web,"Sticky Web",status,,,20,6,Bug
+thousand-arrows,"Thousand Arrows",physical,90,100,10,6,Ground
+thousand-waves,"Thousand Waves",physical,90,100,10,6,Ground
+topsy-turvy,"Topsy-Turvy",status,,,20,6,Dark
+trick-or-treat,"Trick-or-Treat",status,,100,20,6,Ghost
+venom-drench,"Venom Drench",status,,100,20,6,Poison
+water-shuriken,"Water Shuriken",special,15,100,20,6,Water
+10000000-volt-thunderbolt,"10,000,000 Volt Thunderbolt",special,195,,1,7,Electric
+accelerock,"Accelerock",physical,40,100,20,7,Rock
+anchor-shot,"Anchor Shot",physical,80,100,20,7,Steel
+aurora-veil,"Aurora Veil",status,,,20,7,Ice
+baddy-bad,"Baddy Bad",special,90,100,15,7,Dark
+baneful-bunker,"Baneful Bunker",status,,,10,7,Poison
+beak-blast,"Beak Blast",physical,100,100,15,7,Flying
+bouncy-bubble,"Bouncy Bubble",special,90,100,15,7,Water
+brutal-swing,"Brutal Swing",physical,60,100,20,7,Dark
+burn-up,"Burn Up",special,130,100,5,7,Fire
+buzzy-buzz,"Buzzy Buzz",special,90,100,15,7,Electric
+catastropika,"Catastropika",physical,210,,1,7,Electric
+clanging-scales,"Clanging Scales",special,110,100,5,7,Dragon
+clangorous-soulblaze,"Clangorous Soulblaze",special,185,,1,7,Dragon
+core-enforcer,"Core Enforcer",special,100,100,10,7,Dragon
+darkest-lariat,"Darkest Lariat",physical,85,100,10,7,Dark
+double-iron-bash,"Double Iron Bash",physical,60,100,5,7,Steel
+dragon-hammer,"Dragon Hammer",physical,90,100,15,7,Dragon
+extreme-evoboost,"Extreme Evoboost",status,,,1,7,Normal
+fire-lash,"Fire Lash",physical,80,100,15,7,Fire
+first-impression,"First Impression",physical,90,100,10,7,Bug
+fleur-cannon,"Fleur Cannon",special,130,90,5,7,Fairy
+floaty-fall,"Floaty Fall",physical,90,95,15,7,Flying
+floral-healing,"Floral Healing",status,,,10,7,Fairy
+freezy-frost,"Freezy Frost",special,90,100,15,7,Ice
+gear-up,"Gear Up",status,,,20,7,Steel
+genesis-supernova,"Genesis Supernova",special,185,,1,7,Psychic
+glitzy-glow,"Glitzy Glow",special,90,100,15,7,Psychic
+guardian-of-alola,"Guardian of Alola",special,,,1,7,Fairy
+high-horsepower,"High Horsepower",physical,95,95,10,7,Ground
+ice-hammer,"Ice Hammer",physical,100,90,10,7,Ice
+instruct,"Instruct",status,,,15,7,Psychic
+laser-focus,"Laser Focus",status,,,30,7,Normal
+leafage,"Leafage",physical,40,100,40,7,Grass
+lets-snuggle-forever,"Let's Snuggle Forever",physical,190,,1,7,Fairy
+light-that-burns-the-sky,"Light That Burns the Sky",special,200,,1,7,Psychic
+liquidation,"Liquidation",physical,85,100,10,7,Water
+lunge,"Lunge",physical,80,100,15,7,Bug
+malicious-moonsault,"Malicious Moonsault",physical,180,,1,7,Dark
+menacing-moonraze-maelstrom,"Menacing Moonraze Maelstrom",special,200,,1,7,Ghost
+mind-blown,"Mind Blown",special,150,100,5,7,Fire
+moongeist-beam,"Moongeist Beam",special,100,100,5,7,Ghost
+multi-attack,"Multi-Attack",physical,90,100,10,7,Normal
+natures-madness,"Nature's Madness",special,,90,10,7,Fairy
+oceanic-operetta,"Oceanic Operetta",special,195,,1,7,Water
+photon-geyser,"Photon Geyser",special,100,100,5,7,Psychic
+pika-papow,"Pika Papow",special,,1000,20,7,Electric
+plasma-fists,"Plasma Fists",physical,100,100,15,7,Electric
+pollen-puff,"Pollen Puff",special,90,100,15,7,Bug
+power-trip,"Power Trip",physical,20,100,10,7,Dark
+prismatic-laser,"Prismatic Laser",special,160,100,10,7,Psychic
+psychic-fangs,"Psychic Fangs",physical,85,100,10,7,Psychic
+psychic-terrain,"Psychic Terrain",status,,,10,7,Psychic
+pulverizing-pancake,"Pulverizing Pancake",physical,210,,1,7,Normal
+purify,"Purify",status,,,20,7,Poison
+revelation-dance,"Revelation Dance",special,90,100,15,7,Normal
+sappy-seed,"Sappy Seed",physical,90,100,15,7,Grass
+searing-sunraze-smash,"Searing Sunraze Smash",physical,200,,1,7,Steel
+shadow-bone,"Shadow Bone",physical,85,100,10,7,Ghost
+shell-trap,"Shell Trap",special,150,100,5,7,Fire
+shore-up,"Shore Up",status,,,10,7,Ground
+sinister-arrow-raid,"Sinister Arrow Raid",physical,180,,1,7,Ghost
+sizzly-slide,"Sizzly Slide",physical,90,100,15,7,Fire
+smart-strike,"Smart Strike",physical,70,,10,7,Steel
+solar-blade,"Solar Blade",physical,125,100,10,7,Grass
+soul-stealing-7-star-strike,"Soul-Stealing 7-Star Strike",physical,195,,1,7,Ghost
+sparkling-aria,"Sparkling Aria",special,90,100,10,7,Water
+sparkly-swirl,"Sparkly Swirl",special,90,100,15,7,Fairy
+spectral-thief,"Spectral Thief",physical,90,100,10,7,Ghost
+speed-swap,"Speed Swap",status,,,10,7,Psychic
+spirit-shackle,"Spirit Shackle",physical,80,100,10,7,Ghost
+splintered-stormshards,"Splintered Stormshards",physical,190,,1,7,Rock
+splishy-splash,"Splishy Splash",special,90,100,15,7,Water
+spotlight,"Spotlight",status,,,15,7,Normal
+stoked-sparksurfer,"Stoked Sparksurfer",special,175,,1,7,Electric
+stomping-tantrum,"Stomping Tantrum",physical,75,100,10,7,Ground
+strength-sap,"Strength Sap",status,,100,10,7,Grass
+sunsteel-strike,"Sunsteel Strike",physical,100,100,5,7,Steel
+tearful-look,"Tearful Look",status,,,20,7,Normal
+throat-chop,"Throat Chop",physical,80,100,15,7,Dark
+toxic-thread,"Toxic Thread",status,,100,20,7,Poison
+trop-kick,"Trop Kick",physical,70,100,15,7,Grass
+veevee-volley,"Veevee Volley",physical,,1000,20,7,Normal
+zing-zap,"Zing Zap",physical,80,100,10,7,Electric
+zippy-zap,"Zippy Zap",physical,50,100,15,7,Electric
+apple-acid,"Apple Acid",special,80,100,10,8,Grass
+aura-wheel,"Aura Wheel",physical,110,100,10,8,Electric
+behemoth-bash,"Behemoth Bash",physical,100,100,5,8,Steel
+behemoth-blade,"Behemoth Blade",physical,100,100,5,8,Steel
+body-press,"Body Press",physical,80,100,10,8,Fighting
+bolt-beak,"Bolt Beak",physical,85,100,10,8,Electric
+branch-poke,"Branch Poke",physical,40,100,40,8,Grass
+breaking-swipe,"Breaking Swipe",physical,60,100,15,8,Dragon
+clangorous-soul,"Clangorous Soul",status,,100,5,8,Dragon
+court-change,"Court Change",status,,100,10,8,Normal
+decorate,"Decorate",status,,,15,8,Fairy
+dragon-darts,"Dragon Darts",physical,50,100,10,8,Dragon
+drum-beating,"Drum Beating",physical,80,100,10,8,Grass
+dynamax-cannon,"Dynamax Cannon",special,100,100,5,8,Dragon
+eternabeam,"Eternabeam",special,160,90,6,8,Dragon
+false-surrender,"False Surrender",physical,80,1000,10,8,Dark
+fishious-rend,"Fishious Rend",physical,85,100,10,8,Water
+grav-apple,"Grav Apple",physical,80,100,10,8,Grass
+jaw-lock,"Jaw Lock",physical,80,100,10,8,Dark
+life-dew,"Life Dew",status,,,10,8,Water
+magic-powder,"Magic Powder",status,,100,20,8,Psychic
+meteor-assault,"Meteor Assault",physical,150,100,5,8,Fighting
+no-retreat,"No Retreat",status,,,5,8,Fighting
+obstruct,"Obstruct",status,,100,10,8,Dark
+octolock,"Octolock",status,,100,15,8,Fighting
+overdrive,"Overdrive",special,80,100,10,8,Electric
+pyro-ball,"Pyro Ball",physical,120,90,5,8,Fire
+snap-trap,"Snap Trap",physical,35,100,15,8,Grass
+snipe-shot,"Snipe Shot",special,80,100,15,8,Water
+spirit-break,"Spirit Break",physical,75,100,15,8,Fairy
+steel-beam,"Steel Beam",special,140,95,5,8,Steel
+strange-steam,"Strange Steam",special,90,95,10,8,Fairy
+stuff-cheeks,"Stuff Cheeks",status,,,10,8,Normal
+tar-shot,"Tar Shot",status,,100,15,8,Rock
+teatime,"Teatime",status,,,10,8,Normal
