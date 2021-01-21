@@ -5,6 +5,9 @@ from bs4 import BeautifulSoup
 import psycopg2
 import psycopg2.extras
 
+connection_string_local = "dbname='pokedex' user='postgres' host='localhost' password='Super*32'"
+connection_string_prod  = "dbname='pokedex' user='pi' host='10.0.0.42' password='Super*32'"
+
 
 class CharacterMove:
   def __init__(self):
@@ -22,24 +25,24 @@ def get_moveId(name):
     .lower()
 
 
-def get_page(url):
-  request = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-  response = urllib.request.urlopen(request)
-  return response.read()
+# def get_page(url):
+#   request = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+#   response = urllib.request.urlopen(request)
+#   return response.read()
 
 
-def make_detail_url(pageId):
-  return 'https://pokemondb.net/pokedex/' + pageId
+# def make_detail_url(pageId):
+#   return 'https://pokemondb.net/pokedex/' + pageId
 
 
 def make_detail_moves_by_gen_url(name, gen):
   return make_detail_url(name) + '/moves/{0}'.format(gen)
 
 
-def character_detail_page(pageId):
-  url = make_detail_url(pageId)
-  soup = BeautifulSoup(get_page(url), "html.parser")
-  return soup
+# def character_detail_page(pageId):
+#   url = make_detail_url(pageId)
+#   soup = BeautifulSoup(get_page(url), "html.parser")
+#   return soup
 
 
 def detail_moves_by_gen_page(name, gen):
@@ -80,13 +83,21 @@ def scrape_moves(page):
 
 
 def get_characters():
-  conn = psycopg2.connect("dbname='pokedex' user='postgres' host='localhost' password='Super*32'")
-  cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+  sql = "SELECT * FROM characters ORDER BY character_id"
 
-  cur.execute("select * from characters order by character_id")
-  characters = cur.fetchall()
+  conn = None
 
-  conn.close()
+  try:
+    conn = psycopg2.connect(connection_string_prod)
+    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    cur.execute(sql)
+    characters = cur.fetchall()
+    cur.close()
+  except (Exception, psycopg2.DatabaseError) as error:
+    print(error)
+  finally:
+    if conn is not None:
+      conn.close()
   
   return characters
 

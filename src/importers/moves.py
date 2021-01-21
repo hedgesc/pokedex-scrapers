@@ -1,26 +1,28 @@
 import urllib.request
 from bs4 import BeautifulSoup
-from pymongo import MongoClient
 import collections
+import psycopg2
+import psycopg2.extras
 
 # name_id varchar(50) unique not null,
 # name varchar(50) not null,
-# category varchar(50) null, 
 # power int null, 
 # accuracy int null, 
 # pp int null, 
 # generation int not null,
 # type varchar(50) not null
 
+connection_string_local = "dbname='pokemondb' user='postgres' host='localhost' password='Super*32'"
+connection_string_prod  = "dbname='pokemondb' user='pi' host='10.0.0.42' password='Super*32'"
+
 class Move:
   def __init__(self):
     self.nameId = ""
     self.name = ""
-    self.category = ""
-    self.power = 0
-    self.accuracy = 0
-    self.pp = 0
-    self.generation = 0
+    self.power = None
+    self.accuracy = None
+    self.pp = None
+    self.gen = 0
     self.type = ""
 
 
@@ -36,26 +38,41 @@ def parse_moves_page(gen):
   return soup
 
 
-def insert_move(move):
-  client = MongoClient(host='localhost', port=27017)
-  db = client.pokedex
-  result = db.moves.insert_one(move.__dict__)
-  return result.inserted_id
+def insert_move_list(move_list):
+  sql = """ INSERT INTO moves(name,name_id,gen,type,power,accuracy,pp) 
+  VALUES(%(name)s,%(nameId)s,%(gen)s,%(type)s,%(power)s,%(accuracy)s,%(pp)s) """
+
+  conn = None
+  
+  try:
+    # connect to the PostgreSQL database
+    conn = psycopg2.connect(connection_string_local)
+    # create a new cursor
+    cur = conn.cursor()
+    # execute the INSERT statement
+    cur.executemany(sql, move_list)
+    # commit the changes to the database
+    conn.commit()
+    # close communication with the database
+    cur.close()
+  except (Exception, psycopg2.DatabaseError) as error:
+    print(error)
+    return False
+  finally:
+    if conn is not None:
+      conn.close()
+  
+  return True
 
 
-def create_move_from_tag(tag):
+def create_move_from_tag(tag, gen):
   columns = tag.find_all("td")
-
-  cat = columns[2].attrs["data-filter-val"]
-
-  if cat == '':
-    return None
 
   result = Move()
 
+  result.gen = gen
   result.name = columns[0].select_one(".ent-name").get_text()
   result.nameId = result.name.replace(",", "").replace("'", "").replace(" ", "-").lower()
-  result.category = cat
   result.power = text_to_int(columns[3].get_text())
   result.accuracy = text_to_int(columns[4].get_text())
   result.pp = text_to_int(columns[5].get_text())
@@ -74,29 +91,16 @@ def text_to_int(text):
 
 
 def move_to_csv_line(move):
-  return "{0},\"{1}\",{2},{3},{4},{5},{6},{7}".format(\
-    move.nameId, move.name, move.category,\
+  return "{0},\"{1}\",{2},{3},{4},{5},{6}".format(\
+    move.nameId, move.name,\
     "" if move.power is None else move.power,\
     "" if move.accuracy is None else move.accuracy,\
     "" if move.pp is None else move.pp,\
-    move.generation, move.type)
+    move.gen, move.type)
 
 
 def print_move(move):
   print(move_to_csv_line(move))
-
-
-def make_csv(data):
-  csv = open("moves.csv", "w")
-  csv.truncate(0)
-
-  header = "name_id,name,category,power,accuracy,pp,generation,type\n"
-  csv.write(header)
-
-  for m in data:
-    csv.write(move_to_csv_line(m) + "\n")
-  
-  csv.close()
 
 
 def get_generations():
@@ -106,7 +110,8 @@ def get_generations():
 moves = []
 
 for g in get_generations():
-  print("Getting generation {0} moves".format(g))
+  print("Importing generation {0} moves".format(g))
+  print()
 
   gen = g
   page = parse_moves_page(gen)
@@ -116,14 +121,18 @@ for g in get_generations():
   ctr = 0
 
   for r in rows:
-    move = create_move_from_tag(r)
+    move = create_move_from_tag(r, g)
 
     if not (move is None):
-      move.generation = gen
-      moves.append(move)
+      moves.append(move.__dict__)
       print_move(move)
         
     ctr += 1
     print("{0}/{1} {2:.1%}".format(ctr, tot, ctr / tot))
 
-make_csv(moves)
+  success = insert_move_list(moves)
+
+  if success:
+    moves.clear()
+
+  print()
