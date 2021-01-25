@@ -274,6 +274,52 @@ def get_move_nameId(name):
 # helper functions end
 
 # scraping
+def scrape_base_stats(character, panel):
+  dex_stats = panel.select_one('#dex-stats ~ .resp-scroll')
+  stats_tbl = dex_stats.select_one('.vitals-table')
+  rows = stats_tbl.select('tr')
+
+  for r in rows:
+    h = r.select_one('th').get_text()
+    n = r.select('td')[0].get_text()
+
+    if(h == 'HP'):
+      character.hp = int(n)
+    elif(h == 'Attack'):
+      character.attack = int(n)
+    elif(h == 'Defense'):
+      character.defense = int(n)
+    elif(h == 'Sp. Atk'):
+      character.specialAttack = int(n)
+    elif(h == 'Sp. Def'):
+      character.specialDefense = int(n)
+    elif(h == 'Speed'):
+      character.speed = int(n)
+    elif(h == 'Total'):
+      character.total = int(n)
+
+
+def scrape_gen(scraper):
+  gen = None
+  is_gen_list = False
+  
+  unordered_lists = scraper.select("ul")
+  
+  for ul in unordered_lists:
+    line_items = ul.select("li")
+    for li in line_items:
+      if li.get_text().lower() == "in other generations":
+        is_gen_list = True
+        break
+    if is_gen_list:
+      gen = line_items[1].find("a").get_text()
+      break
+  
+  if gen is None:
+    return 0
+    
+  return int(gen)
+
 def text_to_int(text):
   val = text.replace(chr(8212), "").replace(chr(8734), "1000")
     

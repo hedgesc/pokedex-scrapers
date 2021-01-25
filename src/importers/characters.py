@@ -10,69 +10,48 @@ connection_string = "dbname='pokemondb' user='postgres' host='localhost' passwor
 # connection_string  = "dbname='pokemondb' user='pi' host='10.0.0.42' password='Super*32'"
 
 class Character:
-  baseImageUrl = "https://www.serebii.net/swordshield/pokemon/"
-  baseImageExt = ".png"
-  pokemonId = None
-  name = None
-  types = None
-  total = None
-  hp = None
-  attack = None
-  defense = None
-  specialAttack = None
-  specialDefense = None
-  speed = None
-  imageUrl = None
-  nameId = None
-  gen = None
-  abilities = None
-
   def __init__(self):
+    self.pokemonId = None
+    self.name = None
+    self.total = None
+    self.hp = None
+    self.attack = None
+    self.defense = None
+    self.specialAttack = None
+    self.specialDefense = None
+    self.speed = None
+    self.nameId = None
+    self.alternateName = None
     self.types = []
     self.abilities = []
-
-  def setNameId(self):
-    self.nameId = self.name.replace(":", "")\
-      .replace(" ", "-")\
-      .replace(u'\u2642', '-m')\
-      .replace(u'\u2640', '-f')\
-      .replace(".", "")\
-      .replace(u'\u00E9', 'e')\
-      .replace("'", "")\
-      .lower()
-
-  def setImageUrl(self):
-    self.imageUrl = "{0}{1}{2}".format(
-      self.baseImageUrl, 
-      self.pokemonId, 
-      self.baseImageExt)
-
-  def setGen(self, n):
-    id = int(self.pokemonId.lstrip("0"))
-
-    if n == 0 and id > 809:
-      self.gen = 8
-    else:
-      self.gen = n
+    self.isAlternateForm = False
 
   def getDetailUrl(self):
     base_url = "https://pokemondb.net/pokedex/"
 
     return base_url + self.nameId
 
+def generate_nameId_from_name(name):
+  return name.replace(":", "")\
+    .replace(" ", "-")\
+    .replace(u'\u2642', '-m')\
+    .replace(u'\u2640', '-f')\
+    .replace(".", "")\
+    .replace(u'\u00E9', 'e')\
+    .replace("'", "")\
+    .lower()
+
 
 def insert_character(character):
   sql = """ 
   INSERT INTO characters(
-    pokemon_id, name, name_id, image_url, 
-    types, abilities, gen, hp, 
+    pokemon_id, name, name_id, types, abilities, hp, 
     attack, defense, special_attack, special_defense, 
-    speed, total)
+    speed, total, alternate_name)
   VALUES(
-    %(pokemonId)s, %(name)s, %(nameId)s, %(imageUrl)s, 
-    %(types)s, %(abilities)s, %(gen)s, %(hp)s, 
+    %(pokemonId)s, %(name)s, %(nameId)s, %(types)s, %(abilities)s, %(hp)s, 
     %(attack)s, %(defense)s, %(specialAttack)s, %(specialDefense)s, 
-    %(speed)s, %(total)s) 
+    %(speed)s, %(total)s, %(alternateName)s) 
   ON CONFLICT (character_id) DO NOTHING 
   RETURNING character_id; """
   
@@ -110,76 +89,83 @@ def get_page(url):
 def build_scraper(url):
   return BeautifulSoup(get_page(url), "html.parser")
 
-def scrape_gen(scraper):
-  gen = None
-  is_gen_list = False
-  
-  unordered_lists = scraper.select("ul")
-  
-  for ul in unordered_lists:
-    line_items = ul.select("li")
-    for li in line_items:
-      if li.get_text().lower() == "in other generations":
-        is_gen_list = True
-        break
-    if is_gen_list:
-      gen = line_items[1].find("a").get_text()
-      break
-  
-  if gen is None:
-    return 0
-    
-  return int(gen)
 
-def scrape_abilities(scraper):
+def scrape_pokemon_detail_dex_data(character, panel):
+  types = []
   abilities = []
-  
-  abilities_row = None
 
-  for row in scraper.select(".vitals-table tr"):
-    head = row.find("th")
-      
+  table = panel.select_one(".vitals-table")
+  rows = table.select("tr")
+
+  for row in rows:
+    head = row.select_one("th")
+    
     if head is None:
       continue
+
+    head_text = head.get_text()
+
+    if head_text == "Type":
+      cell = row.select_one("td")
       
-    if (head.get_text() == "Abilities"):
-      abilities_row = row
+      if not (cell is None):
+        for t in cell.select("a"):
+          types.append(t.get_text())
+
+    if head_text == "Abilities":
+      cell = row.select_one("td")
+
+      if not (cell is None):
+        for a in cell.select("a"):
+          abilities.append(a.get_text())
+
+  if len(character.types) == 0:
+    character.types = types
+
+  if len(character.abilities) == 0:
+    character.abilities = abilities
+
+
+def find_detail_panel(scraper, character):
+  result = None
+  text = None
+
+  if character.isAlternateForm:
+    text = character.alternateName
+  else:
+    text = character.name
+
+  tabs = scraper.select(".tabset-basics > .tabs-tab-list > .tabs-tab")
+
+  for tab in tabs:
+    if tab.get_text() == text:
+      result = scraper.select_one(tab["href"])
       break
 
-  if abilities_row is None:
-    return abilities
+  return result
 
-  ability_links = abilities_row.find("td").select("a")
-
-  for link in ability_links:
-    abilities.append(link.get_text())
-
-  return abilities
 
 def scrape_pokemon_detail(character):
-  url = character.getDetailUrl()
-  
-  scraper = build_scraper(url)
+  detail_url = character.getDetailUrl()
+  scraper = build_scraper(detail_url)
+  panel = find_detail_panel(scraper, character)
+  scrape_pokemon_detail_dex_data(character, panel)
 
-  character.abilities = scrape_abilities(scraper)
-  print("---- {0}%  Complete".format(87))
-
-  gen = scrape_gen(scraper)
-  character.setGen(gen)
-  print("---- {0}%  Complete".format(93))
 
 def scrape_pokemon_item(elem):
   columns = elem.find_all("td")
 
-  altText = columns[1].select_one("small")
-    
-  if not (altText is None):
-    return None
-
   result = Character()
-
   result.pokemonId = columns[0].select_one(".infocard-cell-data").get_text()
+
   result.name = columns[1].select_one(".ent-name").get_text()
+  result.nameId = generate_nameId_from_name(result.name)
+  
+  alt_name_tag = columns[1].select_one("small")
+  
+  if not (alt_name_tag is None):
+    result.alternateName = alt_name_tag.get_text()
+    result.isAlternateForm = True
 
   for t in columns[2].select("a"):
       result.types.append(t.get_text())
@@ -191,9 +177,6 @@ def scrape_pokemon_item(elem):
   result.specialAttack = int(columns[7].get_text())
   result.specialDefense = int(columns[8].get_text())
   result.speed = int(columns[9].get_text())
-  
-  result.setNameId()
-  result.setImageUrl()
 
   return result
 
@@ -216,22 +199,22 @@ def scrape_all_pokemon(start_row = 0):
     print("Importing character in row {0}".format(row_counter))
 
     character = scrape_pokemon_item(r)
-
-    if character is None:
-      print ("-- Alternate form... skipping.")
-      print("{0}/{1} Complete.".format(row_counter, tot))
-      print()
-      continue
     
-    print("-- {0} - {1}".format(character.pokemonId, character.name))
-    print("---- {0}%  Complete".format(80))
+    if character.isAlternateForm:
+      print("-- {0} - {1} ({2})".format(character.pokemonId, character.name, character.alternateName))
+    else:
+      print("-- {0} - {1}".format(character.pokemonId, character.name))
+
+    print("---- {0}%  Complete".format(85))
 
     scrape_pokemon_detail(character)
+    print("---- {0}%  Complete".format(92))
 
     character_id = insert_character(character)
     print("---- {0}% Complete".format(100))
 
-    print("{0}/{1} Complete ({2})".format(row_counter, tot, character_id))
+    print("{0}/{1} Done".format(row_counter, tot))
     print()
+
 
 scrape_all_pokemon()
