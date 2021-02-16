@@ -415,7 +415,7 @@ def scrape_moves(scraper, tabs_panel_id):
     if head1 in ["Lv.", "HM", "TM"]:
       for row in tbl.select("tbody > tr"):
         columns = row.find_all("td")
-        move_name_id = get_move_nameId(columns[1].get_text())
+        move_name_id = get_move_nameId()
         power = text_to_int(columns[4].get_text())
         move_info = { 
           "name_id": move_name_id, 
