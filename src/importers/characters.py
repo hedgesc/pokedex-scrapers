@@ -5,7 +5,7 @@ import urllib.request
 from bs4 import BeautifulSoup
 import pprint
 
-connection_string = "dbname='pokemondb' user='postgres' host='localhost' password='Super*32'"
+connection_string = "dbname='pokemondb' user='postgres' host='127.0.0.1' password='Super*32'"
 # pi-zero
 # connection_string  = "dbname='pokemondb' user='pi' host='10.0.0.42' password='Super*32'"
 
@@ -135,7 +135,7 @@ def find_detail_panel(scraper, character):
   else:
     text = character.name
 
-  tabs = scraper.select(".tabset-basics > .tabs-tab-list > .tabs-tab")
+  tabs = scraper.select(".tabset-basics > .sv-tabs-tab-list > .sv-tabs-tab")
 
   for tab in tabs:
     if tab.get_text() == text:

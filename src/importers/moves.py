@@ -12,7 +12,7 @@ import psycopg2.extras
 # generation int not null,
 # type varchar(50) not null
 
-connection_string_local = "dbname='pokemondb' user='postgres' host='localhost' password='Super*32'"
+connection_string_local = "dbname='pokemondb' user='postgres' host='127.0.0.1' password='Super*32'"
 connection_string_prod  = "dbname='pokemondb' user='pi' host='10.0.0.42' password='Super*32'"
 
 class Move:

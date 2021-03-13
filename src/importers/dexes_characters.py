@@ -5,7 +5,7 @@ import urllib.request
 from bs4 import BeautifulSoup
 
 base_detail_url = "https://pokemondb.net/pokedex/"
-connection_string = "dbname='pokemondb' user='postgres' host='localhost' password='Super*32'"
+connection_string = "dbname='pokemondb' user='postgres' host='127.0.0.1' password='Super*32'"
 # pi-zero
 # connection_string  = "dbname='pokemondb' user='pi' host='10.0.0.42' password='Super*32'"
 
