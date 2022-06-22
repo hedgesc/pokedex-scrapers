@@ -13,4 +13,4 @@ class Move:
 		self.probability = probability
 
 	def toCsvString(self):
-		return "{0},\"{1}\",{2},{3},{4},{5},{6},\"{7}\",{8}\n".format(self.moveId, self.name, self.nameId, self.type, self.category, self.power, self.accuracy, self.pp, self.effect, self.probability)
+		return "{0},\"{1}\",{2},{3},{4},{5},{6},{7},\"{8}\",{9}\n".format(self.moveId, self.name, self.nameId, self.type, self.category, self.power, self.accuracy, self.pp, self.effect, self.probability)
