@@ -30,9 +30,7 @@ def exportCharacters():
 	csv = open(output_path, "w", encoding="utf-8")
 	csv.truncate(0)
 
-	header = "character_id,pokemon_id,generation,name,total,hp,attack,defense,\
-		special_attack,special_defense,speed,name_id,alternate_name,types,\
-			abilities,final_evolution_id,is_visible,thumbnail_url,image_url1,image_url2\n"
+	header = "character_id,pokemon_id,generation,name,total,hp,attack,defense,special_attack,special_defense,speed,name_id,alternate_name,types,abilities,final_evolution_id,is_visible,thumbnail_url,image_url1,image_url2\n"
 
 	csv.write(header)
 

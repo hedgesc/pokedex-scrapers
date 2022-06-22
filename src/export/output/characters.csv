@@ -1,4 +1,4 @@
-character_id,pokemon_id,generation,name,total,hp,attack,defense,		special_attack,special_defense,speed,name_id,alternate_name,types,			abilities,final_evolution_id,is_visible,thumbnail_url,image_url1,image_url2
+character_id,pokemon_id,generation,name,total,hp,attack,defense,special_attack,special_defense,speed,name_id,alternate_name,types,abilities,final_evolution_id,is_visible,thumbnail_url,image_url1,image_url2
 1,001,1,"Bulbasaur",318,45,49,49,65,65,45,bulbasaur,,"{Grass,Poison}","{Overgrow}",venusaur,t,"https://img.pokemondb.net/sprites/home/normal/bulbasaur.png","https://img.pokemondb.net/artwork/bulbasaur.jpg","https://www.serebii.net/pokemon/art/001.png"
 2,002,1,"Ivysaur",405,60,62,63,80,80,60,ivysaur,,"{Grass,Poison}","{Overgrow}",venusaur,t,"https://img.pokemondb.net/sprites/home/normal/ivysaur.png","https://img.pokemondb.net/artwork/ivysaur.jpg","https://www.serebii.net/pokemon/art/002.png"
 3,003,1,"Venusaur",525,80,82,83,100,100,80,venusaur,,"{Grass,Poison}","{Overgrow}",venusaur,t,"https://img.pokemondb.net/sprites/home/normal/venusaur.png","https://img.pokemondb.net/artwork/venusaur.jpg","https://www.serebii.net/pokemon/art/003.png"

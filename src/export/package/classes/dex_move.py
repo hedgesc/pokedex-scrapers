@@ -11,14 +11,7 @@ class DexMove:
         self.accuracy = accuracy
 
     def setLearnedByInfo(self, abbr, id):
-        self.learnedById = id
-
         # "Lv.", "HM", "TM"
-        if abbr == "Lv.":
-            self.learnedBy = "level up"
-        elif abbr == "HM":
-            self.learnedBy = "hidden machine"
-        elif abbr == "TM":
-            self.learnedBy = "technical machine"
-        else:
-            self.learnedBy = 'other'
+        self.learnedBy = abbr
+        self.learnedById = id
+        
