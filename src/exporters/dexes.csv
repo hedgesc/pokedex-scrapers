@@ -1,0 +1,19 @@
+dex_id,name,name_id,alternate_name,gen
+1,Red/Blue,red-blue,Red & Blue,1
+2,Yellow,yellow,Yellow,1
+3,Crystal,crystal,Crystal,2
+4,Gold/Silver,gold-silver,Gold & Silver,2
+5,FireRed/LeafGreen,firered-leafgreen,FireRed & LeafGreen,3
+6,Ruby/Sapphire,ruby-sapphire,Ruby & Sapphire,3
+7,Emerald,emerald,Emerald,3
+8,Diamond/Pearl,diamond-pearl,Diamon & Pearl,4
+9,Platinum,platinum,Platinum,4
+10,HeartGold/SoulSilver,heartgold-soulsilver,HeartGold & SoulSilver,4
+11,Black/White,black-white,Black & White,5
+12,Black 2/White 2,black-white-2,Black 2 & White 2,5
+13,X/Y,x-y,X & Y,6
+14,Omega Ruby/Alpha Sapphire,omega-ruby-alpha-sapphire,Omega Ruby & Alpha Sapphire,6
+15,Sun/Moon,sun-moon,Sun & Moon,7
+16,Ultra Sun/Ultra Moon,ultra-sun-ultra-moon,Ultra Sun & Ultra Moon,7
+17,Let's Go Pikachu/Let's Go Eevee,lets-go-pikachu-eevee,Let's Go Pikachu & Let's Go Eevee,7
+18,Sword/Shield,sword-shield,Sword & Shield,8

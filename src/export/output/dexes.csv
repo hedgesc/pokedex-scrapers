@@ -1,0 +1,17 @@
+dex_id,name,name_id,alternate_name,generation
+1,red-blue-yellow,"Red/Blue/Yellow","Red, Blue & Yellow",1
+2,gold-silver-crystal,"Gold/Silver/Crystal","Gold, Silver & Crystal",2
+3,ruby-sapphire-emerald,"Ruby/Sapphire/Emerald","Ruby, Sapphire & Emerald",3
+4,firered-leafgreen,"FireRed/LeafGreen","FireRed & LeafGreen",3
+5,diamond-pearl,"Diamond/Pearl","Diamond & Pearl",4
+6,platinum,"Platinum","Platinum",4
+7,heartgold-soulsilver,"HeartGold/SoulSilver","HeartGold & SoulSilver",4
+8,black-white,"Black/White","Black & White",5
+9,black-white-2,"Black 2/White 2","Black 2 & White 2",5
+10,x-y,"X/Y","X & Y",6
+11,omega-ruby-alpha-sapphire,"Omega Ruby/Alpha Sapphire","Omega Ruby & Alpha Sapphire",6
+12,sun-moon,"Sun/Moon","Sun & Moon",7
+13,ultra-sun-ultra-moon,"Ultra Sun/Ultra Moon","Ultra Sun & Ultra Moon",7
+14,lets-go-pikachu-eevee,"Let's Go Pikachu/Let's Go Eevee","Let's Go Pikachu & Let's Go Eevee",7
+15,sword-shield,"Sword/Shield","Sword & Shield",8
+16,brilliant-diamond-shining-pearl,"Brilliant Diamond/Shining Pearl","Brilliant Diamond & Shining Pearl",8

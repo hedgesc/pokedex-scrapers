@@ -1,0 +1,35 @@
+game_id,dex_id,name,name_id,regions
+1,1,Red,red,{Kanto}
+2,1,Blue,blue,{Kanto}
+3,2,Yellow,yellow,{Kanto}
+4,3,Crystal,crystal,"{Kanto,Johto}"
+5,4,Gold,gold,"{Kanto,Johto}"
+6,4,Silver,silver,"{Kanto,Johto}"
+7,5,FireRed,firered,{Kanto}
+8,5,LeafGreen,leafgreen,{Kanto}
+9,6,Ruby,ruby,{Hoenn}
+10,6,Sapphire,sapphire,{Hoenn}
+11,7,Emerald,emerald,{Hoenn}
+12,8,Pearl,pearl,{Sinnoh}
+13,8,Diamond,diamond,{Sinnoh}
+14,9,Platinum,platinum,{Sinnoh}
+15,10,HeartGold,heartgold,"{Kanto,Johto,Hoenn,Sinnoh}"
+16,10,SoulSilver,soulsilver,"{Kanto,Johto,Hoenn,Sinnoh}"
+17,11,Black,black,{Unova}
+18,11,White,white,{Unova}
+19,12,Black 2,black2,{Unova}
+20,12,White 2,white2,{Unova}
+21,13,X,x,{Kalos}
+22,13,Y,y,{Kalos}
+23,14,Omega Ruby,omega-ruby,{Hoenn}
+24,14,Alpha Sapphire,alpha-sapphire,{Hoenn}
+25,15,Sun,sun,{Alola}
+26,15,Moon,moon,{Alola}
+27,16,Ultra Sun,ultra-sun,{Alola}
+28,16,Ultra Moon,ultra-moon,{Alola}
+29,17,Let's Go Pikachu,lets-go-pikachu,{Kanto}
+30,17,Let's Go Eevee,lets-go-eevee,{Kanto}
+31,18,Sword,sword,{Galar}
+32,18,Shield,shield,{Galar}
+33,19,Brilliant Diamond,brilliant-diamond,{Sinnoh}
+34,19,Shining Pearl,shining-pearl,{Sinnoh}
