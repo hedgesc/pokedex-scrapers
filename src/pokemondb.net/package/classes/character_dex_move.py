@@ -1,6 +1,7 @@
 from package.utils import util
 
 class CharacterDexMove:
+    characterDexMoveId = 0
     dexId = 0
     moveId = 0
     isSuggested = False
@@ -21,4 +22,4 @@ class CharacterDexMove:
         return "t" if self.isSuggested else "f"
 
     def toCsvString(self):
-        return "{0},{1},{2},{3},{4},{5},{6},{7},{8}\n".format(self.dexId, self.characterId, self.moveId, self.generation, self.getIsSuggested(), self.power, self.accuracy, self.learnedBy, self.learnedById)
+        return "{0},{1},{2},{3},{4},{5},{6},{7},{8},{9}\n".format(self.characterDexMoveId, self.dexId, self.characterId, self.moveId, self.generation, self.getIsSuggested(), self.power, self.accuracy, self.learnedBy, self.learnedById)

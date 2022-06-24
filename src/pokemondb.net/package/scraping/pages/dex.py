@@ -9,7 +9,8 @@ def getDexParser(dex):
 
 
 def selectCharacterCards(parser):
-	return parser.select('.infocard-list > .infocard')
+	main_list = parser.select_one(".infocard-list")
+	return main_list.select(".infocard")
 
 
 def createDexCharacterFromCard(card):

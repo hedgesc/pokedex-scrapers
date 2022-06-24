@@ -195,16 +195,18 @@ def exportDexesCharactersMoves():
 	csv = open(output_path, "w", encoding="utf-8")
 	csv.truncate(0)
 
-	header = "dex_id,character_id,move_id,generation,is_suggested,power,accuracy,learned_by,learned_by_id\n"
+	header = "dex_character_move_id,dex_id,character_id,move_id,generation,is_suggested,power,accuracy,learned_by,learned_by_id\n"
 
 	csv.write(header)
+
+	id = 1
 
 	for c in characters:
 		display_name = c.alternateName if c.isAlternateForm else c.name
 		print("\tScraping moves for character {0} {1}".format(c.characterId, display_name))
 
-		character_moves = scrapeAllCharacterMoves(c)
-		
+		character_moves = scrapeAllCharacterMoves(c)	
+
 		for cm in character_moves:
 			dex = findDexContainingNameId(cm.dexNameId)
 			
@@ -219,8 +221,12 @@ def exportDexesCharactersMoves():
 				continue
 			
 			cm.moveId = move.moveId
+			
+			cm.characterDexMoveId = id
 
 			csv.write(cm.toCsvString())
+
+			id += 1
 
 
 	csv.close()
@@ -237,7 +243,6 @@ games = listGames()
 exportGames()
 
 dexes = listDexes()
-
 exportGamesCharacters()
 
 exportDexes()
