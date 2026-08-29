@@ -1,5 +1,5 @@
-from package.utils import constants
-from package.utils import util
+from pokemondb_net_scrapers.utils import constants
+from pokemondb_net_scrapers.utils import util
 
 class Character:
   def __init__(self):

@@ -1,7 +1,5 @@
-from pkg_resources import resource_listdir
-
-from package.classes.dex_move import DexMove
-from package.utils.constants import CURRENT_GEN
+from pokemondb_net_scrapers.classes.dex_move import DexMove
+from pokemondb_net_scrapers.utils.constants import CURRENT_GEN
 from ...utils import web
 from ...utils import util
 from ...classes.character import *

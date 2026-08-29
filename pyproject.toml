@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pokedex-scrapers"
+version = "0.1.0"
+description = "A project containing various Python scripts for scraping pokedex data"
+readme = "README.md"
+requires-python = ">=3.14.2"
+authors = [
+    { name = "Cory Hedges", email = "cory.hedges@gmail.com" },
+]
+dependencies = [
+    "beautifulsoup4>=4.15",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,10 +1,10 @@
-from package.scraping.characters import scrapeAllCharacters
-from package.scraping.games_characters import scrapeAllDexCharacters
-from package.scraping.dlcs_characters import scrapeAllDlcCharacters
-from package.scraping.dexes_characters_moves import scrapeAllCharacterMoves
-from package.scraping.moves import scrapeAllMoves
-from package.static.repo import listDexes, listGames, listDlcs
-from package.utils import constants
+from pokemondb_net_scrapers.scraping.characters import scrapeAllCharacters
+from pokemondb_net_scrapers.scraping.games_characters import scrapeAllDexCharacters
+from pokemondb_net_scrapers.scraping.dlcs_characters import scrapeAllDlcCharacters
+from pokemondb_net_scrapers.scraping.dexes_characters_moves import scrapeAllCharacterMoves
+from pokemondb_net_scrapers.scraping.moves import scrapeAllMoves
+from pokemondb_net_scrapers.static.repo import listDexes, listGames, listDlcs
+from pokemondb_net_scrapers.utils import constants
 
 
 def findDexById(id):
