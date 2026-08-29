@@ -1,4 +1,4 @@
-from package.classes.dlc import Dlc
+from pokemondb_net_scrapers.classes.dlc import Dlc
 from ..classes.dex import Dex
 from ..classes.game import Game
 
