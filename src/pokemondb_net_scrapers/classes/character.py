@@ -1,4 +1,4 @@
-from pokemondb_net_scrapers.utils import constants
+from pokemondb_net_scrapers.config import settings
 from pokemondb_net_scrapers.utils import util
 
 class Character:
@@ -29,7 +29,7 @@ class Character:
     return "https://www.serebii.net/pokemon/art/{0}.png".format(self.pokemonId)
 
   def getDetailUrl(self):
-    return constants.BASE_DEX_URL + self.nameId
+    return settings.base_dex_url + self.nameId
 
   def setBaseStats(self, stats):
     self.hp = stats.hp

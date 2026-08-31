@@ -13,6 +13,7 @@ authors = [
 ]
 dependencies = [
     "beautifulsoup4>=4.15",
+    "pydantic-settings>=2.15",
 ]
 
 [tool.setuptools.packages.find]

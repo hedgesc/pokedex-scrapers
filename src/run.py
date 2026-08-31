@@ -4,7 +4,7 @@ from pokemondb_net_scrapers.scraping.dlcs_characters import scrapeAllDlcCharacte
 from pokemondb_net_scrapers.scraping.dexes_characters_moves import scrapeAllCharacterMoves
 from pokemondb_net_scrapers.scraping.moves import scrapeAllMoves
 from pokemondb_net_scrapers.static.repo import listDexes, listGames, listDlcs
-from pokemondb_net_scrapers.utils import constants
+from pokemondb_net_scrapers.config import settings
 
 
 def findDexById(id):
@@ -24,9 +24,9 @@ def findMoveByNameId(nameId):
 
 
 def exportCharacters():
-	print("Exporting {0}...".format(constants.CHARACTERS_CSV_FILE))
+	print("Exporting {0}...".format(settings.characters_csv_file))
 	
-	output_path = constants.CSV_OUTPUT_FOLDER + constants.CHARACTERS_CSV_FILE
+	output_path = settings.csv_output_folder + settings.characters_csv_file
 	csv = open(output_path, "w", encoding="utf-8")
 	csv.truncate(0)
 
@@ -44,9 +44,9 @@ def exportCharacters():
 
 
 def exportGames():
-	print("Exporting {0}...".format(constants.GAMES_CSV_FILE))
+	print("Exporting {0}...".format(settings.games_csv_file))
 	
-	output_path = constants.CSV_OUTPUT_FOLDER + constants.GAMES_CSV_FILE
+	output_path = settings.csv_output_folder + settings.games_csv_file
 	csv = open(output_path, "w", encoding="utf-8")
 	csv.truncate(0)
 
@@ -64,9 +64,9 @@ def exportGames():
 
 
 def exportGamesCharacters():
-	print("Exporting {0}...".format(constants.GAMES_CHARACTERS_CSV_FILE))
+	print("Exporting {0}...".format(settings.games_characters_csv_file))
 	
-	output_path = constants.CSV_OUTPUT_FOLDER + constants.GAMES_CHARACTERS_CSV_FILE
+	output_path = settings.csv_output_folder + settings.games_characters_csv_file
 	csv = open(output_path, "w", encoding="utf-8")
 	csv.truncate(0)
 
@@ -95,9 +95,9 @@ def exportGamesCharacters():
 
 
 def exportDexes():
-	print("Exporting {0}...".format(constants.DEXES_CSV_FILE))
+	print("Exporting {0}...".format(settings.dexes_csv_file))
 	
-	output_path = constants.CSV_OUTPUT_FOLDER + constants.DEXES_CSV_FILE
+	output_path = settings.csv_output_folder + settings.dexes_csv_file
 	csv = open(output_path, "w", encoding="utf-8")
 	csv.truncate(0)
 
@@ -115,9 +115,9 @@ def exportDexes():
 
 
 def exportDlcs():
-	print("Exporting {0}...".format(constants.DLCS_CSV_FILE))
+	print("Exporting {0}...".format(settings.dlcs_csv_file))
 	
-	output_path = constants.CSV_OUTPUT_FOLDER + constants.DLCS_CSV_FILE
+	output_path = settings.csv_output_folder + settings.dlcs_csv_file
 	csv = open(output_path, "w", encoding="utf-8")
 	csv.truncate(0)
 
@@ -135,9 +135,9 @@ def exportDlcs():
 
 
 def exportDlcsCharacters():
-	print("Exporting {0}...".format(constants.DLCS_CHARACTERS_CSV_FILE))
+	print("Exporting {0}...".format(settings.dlcs_characters_csv_file))
 	
-	output_path = constants.CSV_OUTPUT_FOLDER + constants.DLCS_CHARACTERS_CSV_FILE
+	output_path = settings.csv_output_folder + settings.dlcs_characters_csv_file
 	csv = open(output_path, "w", encoding="utf-8")
 	csv.truncate(0)
 
@@ -169,9 +169,9 @@ def exportDlcsCharacters():
 
 
 def exportMoves():
-	print("Exporting {0}...".format(constants.MOVES_CSV_FILE))
+	print("Exporting {0}...".format(settings.moves_csv_file))
 	
-	output_path = constants.CSV_OUTPUT_FOLDER + constants.MOVES_CSV_FILE
+	output_path = settings.csv_output_folder + settings.moves_csv_file
 	csv = open(output_path, "w", encoding="utf-8")
 	csv.truncate(0)
 
@@ -189,9 +189,9 @@ def exportMoves():
 
 
 def exportDexesCharactersMoves():
-	print("Exporting {0}...".format(constants.DEXES_CHARACTERS_MOVES_CSV_FILE))
+	print("Exporting {0}...".format(settings.dexes_characters_moves_csv_file))
 
-	output_path = constants.CSV_OUTPUT_FOLDER + constants.DEXES_CHARACTERS_MOVES_CSV_FILE
+	output_path = settings.csv_output_folder + settings.dexes_characters_moves_csv_file
 	csv = open(output_path, "w", encoding="utf-8")
 	csv.truncate(0)
 

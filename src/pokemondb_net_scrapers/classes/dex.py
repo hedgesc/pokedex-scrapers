@@ -1,4 +1,4 @@
-from ..utils import constants
+from ..config import settings
 
 class Dex:
   def __init__(self, dexId, nameId, name, alternateName, gen):
@@ -12,4 +12,4 @@ class Dex:
     return "{0},{1},\"{2}\",\"{3}\",{4}\n".format(self.dexId, self.nameId, self.name, self.alternateName, self.gen)
 
   def getUrl(self):
-    return constants.BASE_DEX_URL + "game/" + self.nameId
+    return settings.base_dex_url + "game/" + self.nameId

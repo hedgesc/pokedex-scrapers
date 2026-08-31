@@ -1,11 +1,11 @@
-from ...utils import constants
+from ...config import settings
 from ...utils import util
 from ...utils import web
 from ...classes.character import *
 from ..shared import infocard
 
 def getNationalDexParser():
-	markup = web.getHtml(constants.NATIONAL_DEX_URL)
+	markup = web.getHtml(settings.national_dex_url)
 	return web.getHtmlParser(markup)
 
 

@@ -1,10 +1,10 @@
 from ....utils import web
-from ....utils import constants
+from ....config import settings
 from ....utils import util
 from ....classes.move import Move
 
 def getAllMovesParser():
-	markup = web.getHtml(constants.ALL_MOVES_URL)
+	markup = web.getHtml(settings.all_moves_url)
 	return web.getHtmlParser(markup)
 
 
