@@ -1,4 +1,4 @@
-from ..utils import constants
+from ..config import settings
 
 class Dlc:
 	def __init__(self, dlcId, dexId, name, nameId):
@@ -11,4 +11,4 @@ class Dlc:
 		return "{0},{1},\"{2}\",{3}\n".format(self.dlcId, self.dexId, self.name, self.nameId)
 
 	def getUrl(self, dexNameId):
-		return "{0}game/{1}/{2}".format(constants.BASE_DEX_URL, dexNameId, self.nameId)
+		return "{0}game/{1}/{2}".format(settings.base_dex_url, dexNameId, self.nameId)

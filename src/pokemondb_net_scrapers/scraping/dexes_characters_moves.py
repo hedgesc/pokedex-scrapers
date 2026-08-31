@@ -1,4 +1,4 @@
-from ..classes.character_dex_move import CharacterDexMove
+from ..models.character_dex_move import CharacterDexMove
 from .pages.character import *
 
 def scrapeAllCharacterMoves(character):

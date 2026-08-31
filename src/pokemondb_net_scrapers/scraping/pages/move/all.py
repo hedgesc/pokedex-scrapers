@@ -1,10 +1,10 @@
 from ....utils import web
-from ....utils import constants
-from ....utils import util
-from ....classes.move import Move
+from ....config import settings
+from ....utils import parsing
+from ....models.move import Move
 
 def getAllMovesParser():
-	markup = web.getHtml(constants.ALL_MOVES_URL)
+	markup = web.getHtml(settings.all_moves_url)
 	return web.getHtmlParser(markup)
 
 
@@ -16,7 +16,7 @@ def createMoveFromRow(row):
 	cols = row.find_all("td")
 
 	name = cols[0].select_one("a").get_text()
-	nameId = util.convertToId(name)
+	nameId = parsing.convertToId(name)
 	
 	typeAnchor = cols[1].select_one("a")
 	type = "" if typeAnchor is None else typeAnchor.get_text()

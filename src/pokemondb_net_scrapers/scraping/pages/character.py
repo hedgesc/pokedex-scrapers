@@ -1,8 +1,8 @@
-from pokemondb_net_scrapers.classes.dex_move import DexMove
-from pokemondb_net_scrapers.utils.constants import CURRENT_GEN
+from pokemondb_net_scrapers.models.dex_move import DexMove
+from pokemondb_net_scrapers.config import settings
 from ...utils import web
-from ...utils import util
-from ...classes.character import *
+from ...utils import parsing
+from ...models.character import *
 
 
 def getCharacterParser(c):
@@ -38,7 +38,7 @@ def scrapeDetailForEvolutions(detail_page):
 
     for c in cards:
       name = c.select_one('.infocard-lg-data').select_one('a.ent-name').get_text()
-      name_id = util.convertToId(name)
+      name_id = parsing.convertToId(name)
       evolutions.append(name_id)
 
   return evolutions
@@ -169,7 +169,7 @@ def scrapeMoveGenerations(parser):
   nav_list = findNavListByTitle(parser, "In other generations")
 
   if nav_list is None:
-    result.append(CURRENT_GEN)
+    result.append(settings.current_gen)
   else:
     items = nav_list.select("li")
     
