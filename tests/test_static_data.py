@@ -26,8 +26,7 @@ def test_listDlcs_loads_from_yaml():
 
 
 def test_listDexGames_filters_by_dex():
-	# Game.isInDex does `self.dexId in dexId`, so it expects a collection.
-	games = repo.listDexGames([1])
+	games = repo.listDexGames(1)
 	assert {g.gameId for g in games} == {1, 2, 3}
 
 
