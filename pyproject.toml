@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools>=68"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
 
 [project]
 name = "pokedex-scrapers"
-version = "0.1.0"
+dynamic = ["version"]
 description = "A project containing various Python scripts for scraping pokedex data"
 readme = "README.md"
 requires-python = ">=3.14.0"
@@ -21,8 +21,14 @@ dev = [
     "pytest>=9.1",
 ]
 
-[tool.setuptools.packages.find]
-where = ["src"]
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.version.raw-options]
+fallback_version = "0.0.0"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pokemondb_net_scrapers"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
