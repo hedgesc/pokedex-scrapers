@@ -1,0 +1,10 @@
+# Hand-maintained list of pokemondb.net DLCs. See static/data.py for how this is
+# loaded/validated and CLAUDE.md for why it can't be scraped.
+- dlcId: 1
+  dexId: 15
+  name: The Isle of Armor
+  nameId: isle-of-armor
+- dlcId: 2
+  dexId: 15
+  name: The Crown Tundra
+  nameId: crown-tundra

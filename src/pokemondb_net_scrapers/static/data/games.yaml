@@ -1,0 +1,172 @@
+# Hand-maintained list of pokemondb.net games. See static/data.py for how this is
+# loaded/validated and CLAUDE.md for why it can't be scraped.
+- gameId: 1
+  dexId: 1
+  name: Red
+  nameId: red
+  regions: [Kanto]
+- gameId: 2
+  dexId: 1
+  name: Blue
+  nameId: blue
+  regions: [Kanto]
+- gameId: 3
+  dexId: 1
+  name: Yellow
+  nameId: yellow
+  regions: [Kanto]
+- gameId: 4
+  dexId: 2
+  name: Gold
+  nameId: gold
+  regions: [Kanto, Johto]
+- gameId: 5
+  dexId: 2
+  name: Silver
+  nameId: silver
+  regions: [Kanto, Johto]
+- gameId: 6
+  dexId: 2
+  name: Crystal
+  nameId: crystal
+  regions: [Kanto, Johto]
+- gameId: 7
+  dexId: 3
+  name: Ruby
+  nameId: ruby
+  regions: [Hoenn]
+- gameId: 8
+  dexId: 3
+  name: Sapphire
+  nameId: sapphire
+  regions: [Hoenn]
+- gameId: 9
+  dexId: 3
+  name: Emerald
+  nameId: emerald
+  regions: [Hoenn]
+- gameId: 10
+  dexId: 4
+  name: FireRed
+  nameId: firered
+  regions: [Kanto]
+- gameId: 11
+  dexId: 4
+  name: LeafGreen
+  nameId: leafgreen
+  regions: [Kanto]
+- gameId: 12
+  dexId: 5
+  name: Diamond
+  nameId: diamond
+  regions: [Sinnoh]
+- gameId: 13
+  dexId: 5
+  name: Pearl
+  nameId: pearl
+  regions: [Sinnoh]
+- gameId: 14
+  dexId: 6
+  name: Platinum
+  nameId: platinum
+  regions: [Sinnoh]
+- gameId: 15
+  dexId: 7
+  name: HeartGold
+  nameId: heartgold
+  regions: [Kanto, Johto, Hoenn, Sinnoh]
+- gameId: 16
+  dexId: 7
+  name: SoulSilver
+  nameId: soulsilver
+  regions: [Kanto, Johto, Hoenn, Sinnoh]
+- gameId: 17
+  dexId: 8
+  name: Black
+  nameId: black
+  regions: [Unova]
+- gameId: 18
+  dexId: 8
+  name: White
+  nameId: white
+  regions: [Unova]
+- gameId: 19
+  dexId: 9
+  name: Black 2
+  nameId: black2
+  regions: [Unova]
+- gameId: 20
+  dexId: 9
+  name: White 2
+  nameId: white2
+  regions: [Unova]
+- gameId: 21
+  dexId: 10
+  name: X
+  nameId: x
+  regions: [Kalos]
+- gameId: 22
+  dexId: 10
+  name: Y
+  nameId: y
+  regions: [Kalos]
+- gameId: 23
+  dexId: 11
+  name: Omega Ruby
+  nameId: omega-ruby
+  regions: [Hoenn]
+- gameId: 24
+  dexId: 11
+  name: Alpha Sapphire
+  nameId: alpha-sapphire
+  regions: [Hoenn]
+- gameId: 25
+  dexId: 12
+  name: Sun
+  nameId: sun
+  regions: [Alola]
+- gameId: 26
+  dexId: 12
+  name: Moon
+  nameId: moon
+  regions: [Alola]
+- gameId: 27
+  dexId: 13
+  name: Ultra Sun
+  nameId: ultra-sun
+  regions: [Alola]
+- gameId: 28
+  dexId: 13
+  name: Ultra Moon
+  nameId: ultra-moon
+  regions: [Alola]
+- gameId: 29
+  dexId: 14
+  name: Let's Go Pikachu
+  nameId: lets-go-pikachu
+  regions: [Kanto]
+- gameId: 30
+  dexId: 14
+  name: Let's Go Eevee
+  nameId: lets-go-eevee
+  regions: [Kanto]
+- gameId: 31
+  dexId: 15
+  name: Sword
+  nameId: sword
+  regions: [Galar]
+- gameId: 32
+  dexId: 15
+  name: Shield
+  nameId: shield
+  regions: [Galar]
+- gameId: 33
+  dexId: 16
+  name: Brilliant Diamond
+  nameId: brilliant-diamond
+  regions: [Sinnoh]
+- gameId: 34
+  dexId: 16
+  name: Shining Pearl
+  nameId: shining-pearl
+  regions: [Sinnoh]

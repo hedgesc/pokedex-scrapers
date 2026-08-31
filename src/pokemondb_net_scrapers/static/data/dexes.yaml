@@ -1,0 +1,82 @@
+# Hand-maintained list of pokemondb.net dexes. See static/data.py for how this is
+# loaded/validated and CLAUDE.md for why it can't be scraped.
+- dexId: 1
+  nameId: red-blue-yellow
+  name: Red/Blue/Yellow
+  alternateName: Red, Blue & Yellow
+  gen: 1
+- dexId: 2
+  nameId: gold-silver-crystal
+  name: Gold/Silver/Crystal
+  alternateName: Gold, Silver & Crystal
+  gen: 2
+- dexId: 3
+  nameId: ruby-sapphire-emerald
+  name: Ruby/Sapphire/Emerald
+  alternateName: Ruby, Sapphire & Emerald
+  gen: 3
+- dexId: 4
+  nameId: firered-leafgreen
+  name: FireRed/LeafGreen
+  alternateName: FireRed & LeafGreen
+  gen: 3
+- dexId: 5
+  nameId: diamond-pearl
+  name: Diamond/Pearl
+  alternateName: Diamond & Pearl
+  gen: 4
+- dexId: 6
+  nameId: platinum
+  name: Platinum
+  alternateName: Platinum
+  gen: 4
+- dexId: 7
+  nameId: heartgold-soulsilver
+  name: HeartGold/SoulSilver
+  alternateName: HeartGold & SoulSilver
+  gen: 4
+- dexId: 8
+  nameId: black-white
+  name: Black/White
+  alternateName: Black & White
+  gen: 5
+- dexId: 9
+  nameId: black-white-2
+  name: Black 2/White 2
+  alternateName: Black 2 & White 2
+  gen: 5
+- dexId: 10
+  nameId: x-y
+  name: X/Y
+  alternateName: X & Y
+  gen: 6
+- dexId: 11
+  nameId: omega-ruby-alpha-sapphire
+  name: Omega Ruby/Alpha Sapphire
+  alternateName: Omega Ruby & Alpha Sapphire
+  gen: 6
+- dexId: 12
+  nameId: sun-moon
+  name: Sun/Moon
+  alternateName: Sun & Moon
+  gen: 7
+- dexId: 13
+  nameId: ultra-sun-ultra-moon
+  name: Ultra Sun/Ultra Moon
+  alternateName: Ultra Sun & Ultra Moon
+  gen: 7
+- dexId: 14
+  nameId: lets-go-pikachu-eevee
+  name: Let's Go Pikachu/Let's Go Eevee
+  alternateName: Let's Go Pikachu & Let's Go Eevee
+  gen: 7
+- dexId: 15
+  nameId: sword-shield
+  name: Sword/Shield
+  alternateName: Sword & Shield
+  gen: 8
+- dexId: 16
+  nameId: brilliant-diamond-shining-pearl
+  name: Brilliant Diamond/Shining Pearl
+  alternateName: Brilliant Diamond & Shining Pearl
+  gen: 8
