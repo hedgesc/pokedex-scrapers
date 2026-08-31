@@ -7,9 +7,8 @@ class Game:
     self.regions = regions
 
   def isInDex(self, dexId):
-    truthy = self.dexId in dexId
-    return truthy
+    return self.dexId == dexId
 
   def toCsvString(self):
-    _regions = ','.join(self.regions) if len(self.regions) > 1 else self.regions[0]
+    _regions = ','.join(self.regions)
     return "{0},{1},\"{2}\",{3},\"{{{4}}}\"\n".format(self.gameId, self.dexId, self.name, self.nameId, _regions)

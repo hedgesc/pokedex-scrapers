@@ -18,11 +18,11 @@ class Character:
     self.generation = 0
     self.finalEvolutionId = ''
     self.types = []
-    self.abilities = [],
-    self.thumbnailUrl = '',
-    self.imageUrl1 = '',
-    self.imageUrl2 = '',
-    self.isVisible = True,
+    self.abilities = []
+    self.thumbnailUrl = ''
+    self.imageUrl1 = ''
+    self.imageUrl2 = ''
+    self.isVisible = True
     self.isAlternateForm = False
 
   def serebiiNetImage(self):
@@ -44,17 +44,8 @@ class Character:
     return "t" if self.isVisible else "f"
 
   def toCsvString(self):
-    _types = ','.join(self.types) if len(self.types) > 1 else self.types[0]
-  
-    _abilities = None
-    _abilities_len = len(self.abilities)
-
-    if _abilities_len > 1:
-      _abilities = ','.join(self.abilities)
-    elif _abilities_len == 1:
-      _abilities = self.abilities[0]
-    else:
-      _abilities = []
+    _types = ','.join(self.types)
+    _abilities = ','.join(self.abilities)
 
     return "{0},{1},{2},\"{3}\",{4},{5},{6},{7},{8},{9},{10},{11},{12},\"{{{13}}}\",\"{{{14}}}\",{15},{16},\"{17}\",\"{18}\",\"{19}\"\n".format(self.characterId, self.pokemonId, self.generation, self.name, self.total, self.hp, self.attack, self.defense, self.specialAttack, self.specialDefense, self.speed, self.nameId, self.alternateName, _types, _abilities, self.finalEvolutionId, self.getIsVisible(), self.thumbnailUrl, self.imageUrl1, self.imageUrl2)
 
