@@ -1,5 +1,5 @@
 from pokemondb_net_scrapers.config import settings
-from pokemondb_net_scrapers.utils import util
+from pokemondb_net_scrapers.utils import parsing
 
 class Character:
   def __init__(self):

@@ -7,7 +7,7 @@ name = "pokedex-scrapers"
 version = "0.1.0"
 description = "A project containing various Python scripts for scraping pokedex data"
 readme = "README.md"
-requires-python = ">=3.14.2"
+requires-python = ">=3.14.0"
 authors = [
     { name = "Cory Hedges", email = "cory.hedges@gmail.com" },
 ]
@@ -16,5 +16,14 @@ dependencies = [
     "pydantic-settings>=2.15",
 ]
 
+[project.optional-dependencies]
+dev = [
+    "pytest>=9.1",
+]
+
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

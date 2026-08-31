@@ -1,8 +1,8 @@
-from pokemondb_net_scrapers.classes.dex_move import DexMove
+from pokemondb_net_scrapers.models.dex_move import DexMove
 from pokemondb_net_scrapers.config import settings
 from ...utils import web
-from ...utils import util
-from ...classes.character import *
+from ...utils import parsing
+from ...models.character import *
 
 
 def getCharacterParser(c):
@@ -38,7 +38,7 @@ def scrapeDetailForEvolutions(detail_page):
 
     for c in cards:
       name = c.select_one('.infocard-lg-data').select_one('a.ent-name').get_text()
-      name_id = util.convertToId(name)
+      name_id = parsing.convertToId(name)
       evolutions.append(name_id)
 
   return evolutions

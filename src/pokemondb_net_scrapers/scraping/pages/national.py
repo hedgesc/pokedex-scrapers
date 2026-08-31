@@ -1,7 +1,7 @@
 from ...config import settings
-from ...utils import util
+from ...utils import parsing
 from ...utils import web
-from ...classes.character import *
+from ...models.character import *
 from ..shared import infocard
 
 def getNationalDexParser():
@@ -23,7 +23,7 @@ def createCharacterFromCard(card):
 	result.thumbnailUrl = infocard.selectImage(card)
 	result.pokemonId = infocard.selectPokemonId(card)
 	result.name = infocard.selectName(card)
-	result.nameId = util.convertToId(result.name)
+	result.nameId = parsing.convertToId(result.name)
 	result.types = infocard.selectTypes(card)
 
 	return result

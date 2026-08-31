@@ -1,4 +1,4 @@
-from pokemondb_net_scrapers.utils import util
+from pokemondb_net_scrapers.utils import parsing
 
 class CharacterDexMove:
     characterDexMoveId = 0
@@ -9,7 +9,7 @@ class CharacterDexMove:
     def __init__(self, characterId, dexName, generation, dexMove):
         self.characterId = characterId
         self.dexName = dexName
-        self.dexNameId = util.convertToDexNameId(dexName)
+        self.dexNameId = parsing.convertToDexNameId(dexName)
         self.generation = generation
         self.moveName = dexMove.moveName
         self.moveNameId = dexMove.moveNameId

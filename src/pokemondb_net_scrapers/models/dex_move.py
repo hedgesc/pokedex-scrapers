@@ -1,4 +1,4 @@
-from pokemondb_net_scrapers.utils import util
+from pokemondb_net_scrapers.utils import parsing
 
 class DexMove:
     learnedBy = ''

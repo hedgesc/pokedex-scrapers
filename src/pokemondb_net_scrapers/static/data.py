@@ -1,6 +1,6 @@
-from pokemondb_net_scrapers.classes.dlc import Dlc
-from ..classes.dex import Dex
-from ..classes.game import Game
+from pokemondb_net_scrapers.models.dlc import Dlc
+from ..models.dex import Dex
+from ..models.game import Game
 
 dexes = [
 	Dex(1,"red-blue-yellow","Red/Blue/Yellow","Red, Blue & Yellow",1),
