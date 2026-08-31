@@ -10,7 +10,7 @@ class Settings(BaseSettings):
 	base_url: str = "https://pokemondb.net/"
 	current_gen: int = 8
 
-	csv_output_folder: str = "output\\"
+	csv_output_folder: str = "data\\"
 	characters_csv_file: str = "characters.csv"
 	dexes_csv_file: str = "dexes.csv"
 	games_csv_file: str = "games.csv"
