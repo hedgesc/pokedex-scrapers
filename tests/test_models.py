@@ -10,6 +10,7 @@ from pokemondb_net_scrapers.models.dlc import Dlc
 from pokemondb_net_scrapers.models.dlc_character import DlcCharacter
 from pokemondb_net_scrapers.models.game import Game
 from pokemondb_net_scrapers.models.move import Move
+from pokemondb_net_scrapers.services import csv_exporter
 
 
 def makeTag(html):
@@ -17,11 +18,10 @@ def makeTag(html):
 
 
 def makeCharacter(**overrides):
-	c = Character()
+	c = Character("Bulbasaur")
 	c.characterId = 1
 	c.pokemonId = "0001"
 	c.generation = 1
-	c.name = "Bulbasaur"
 	c.total = 318
 	c.hp = 45
 	c.attack = 49
@@ -48,12 +48,57 @@ def makeCharacter(**overrides):
 # --- Character -------------------------------------------------------------
 
 def test_character_defaults():
-	c = Character()
+	c = Character("Bulbasaur")
 	assert c.abilities == []
 	assert c.thumbnailUrl == ""
 	assert c.imageUrl1 == ""
 	assert c.imageUrl2 == ""
 	assert c.isVisible is True
+
+
+def test_character_model_dump_default_uses_field_names():
+	c = makeCharacter()
+	dumped = c.model_dump()
+
+	assert dumped["characterId"] == 1
+	assert dumped["imageUrl1"] == "img1.png"
+	assert dumped["imageUrl2"] == "img2.png"
+
+
+def test_character_model_dump_by_alias_uses_snake_case():
+	c = makeCharacter()
+	dumped = c.model_dump(by_alias=True)
+
+	assert dumped["character_id"] == 1
+	assert dumped["pokemon_id"] == "0001"
+	assert dumped["special_attack"] == 65
+	assert dumped["special_defense"] == 65
+	assert dumped["name_id"] == "bulbasaur"
+	assert dumped["alternate_name"] == ""
+	assert dumped["final_evolution_id"] == "venusaur"
+	assert dumped["is_visible"] is True
+	assert dumped["thumbnail_url"] == "thumb.png"
+	# to_snake would otherwise produce image_url_1/image_url_2 - these are
+	# explicitly overridden to match csv_exporter's header columns.
+	assert dumped["image_url1"] == "img1.png"
+	assert dumped["image_url2"] == "img2.png"
+
+
+def test_character_model_dump_by_alias_matches_csv_exporter_header():
+	c = makeCharacter()
+	dumped = c.model_dump(by_alias=True)
+
+	header_columns = csv_exporter.getCsvHeader(Character).strip().split(",")
+
+	for column in header_columns:
+		assert column in dumped
+
+
+def test_character_populate_by_name_allows_construction_by_alias():
+	c = Character.model_validate({"name": "Pikachu", "character_id": 25, "image_url1": "a.png"})
+
+	assert c.characterId == 25
+	assert c.imageUrl1 == "a.png"
 
 
 def test_character_to_csv_string_with_multiple_types_and_abilities():
@@ -109,7 +154,7 @@ def test_character_set_base_stats():
 	stats.speed = 6
 	stats.total = 21
 
-	c = Character()
+	c = Character("Bulbasaur")
 	c.setBaseStats(stats)
 
 	assert c.hp == 1

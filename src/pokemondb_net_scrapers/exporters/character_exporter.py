@@ -3,9 +3,10 @@ import logging
 from datetime import datetime, timezone
 from pathlib import Path
 
-from ..config import CharacterExportConfig, StorageConfig
-from ..interfaces import StorageClient
-from ..models import Character
+from pokemondb_net_scrapers.config import CharacterExportConfig, StorageConfig
+from pokemondb_net_scrapers.interfaces import StorageClient
+from pokemondb_net_scrapers.models.character import Character
+
 
 logger = logging.getLogger(__name__)
 
@@ -40,7 +41,7 @@ class CharacterExporter:
         )
         path = cfg.output_dir / filename
 
-        rows = [c.model_dump() for c in characters]
+        rows = [c.model_dump(by_alias=True) for c in characters]
         fieldnames = cfg.columns or (list(rows[0].keys()) if rows else [])
 
         with path.open("w", newline="", encoding=cfg.encoding) as f:

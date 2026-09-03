@@ -1,5 +1,4 @@
 from ...config import settings
-from ...utils import parsing
 from ...utils import web
 from ...models.character import *
 from ..shared import infocard
@@ -18,12 +17,10 @@ def selectCharacterCard(list):
 
 
 def createCharacterFromCard(card):
-	result = Character()
+	result = Character(infocard.selectName(card))
 
 	result.thumbnailUrl = infocard.selectImage(card)
 	result.pokemonId = infocard.selectPokemonId(card)
-	result.name = infocard.selectName(card)
-	result.nameId = parsing.convertToId(result.name)
 	result.types = infocard.selectTypes(card)
 
 	return result

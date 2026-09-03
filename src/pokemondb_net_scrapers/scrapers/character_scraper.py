@@ -32,7 +32,7 @@ class CharacterScraper:
     def _cache_characters(self) -> None:
         for c in self._characters:
             try:
-                self._cache.set(f"characters:{c.name_id}", c.id)
+                self._cache.set(f"characters:{c.nameId}", c.characterId)
             except Exception:
                 logger.exception("Failed to cache character %s", c.name)
                 # decide: swallow, retry, or re-raise depending on how
@@ -78,7 +78,7 @@ class CharacterScraper:
                 c.abilities = tab[1].selectAbilities()
 
 
-    def _createCharacterFromInfocard(tag: InfocardTag, gen: int) -> Character:
+    def _createCharacterFromInfocard(self, tag: InfocardTag, gen: int) -> Character:
         name = tag.selectName()
         result = Character(name)
         result.generation = gen

@@ -12,12 +12,10 @@ from pokemondb_net_scrapers.services import csv_exporter
 
 
 def makeCharacter(characterId, name):
-	c = Character()
+	c = Character(name)
 	c.characterId = characterId
 	c.pokemonId = "000{0}".format(characterId)
 	c.generation = 1
-	c.name = name
-	c.nameId = name.lower()
 	c.types = ["Grass"]
 	c.abilities = ["Overgrow"]
 
