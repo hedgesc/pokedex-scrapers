@@ -13,6 +13,7 @@ authors = [
 ]
 dependencies = [
     "beautifulsoup4>=4.15",
+    "pydantic>=2.9",
     "pydantic-settings>=2.15",
     "pyyaml>=6.0",
 ]

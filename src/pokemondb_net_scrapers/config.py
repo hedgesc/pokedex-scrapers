@@ -1,7 +1,25 @@
 """Configuration settings for the pokemondb_net_scrapers package."""
 
-from pydantic import computed_field
+from pydantic import computed_field, BaseModel, Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from pathlib import Path
+
+class ExportConfig(BaseModel):
+	output_dir: Path = Path("./exports")
+	columns: list[str] | None = None
+	encoding: str = "utf-8"
+
+
+class CharacterExportConfig(ExportConfig):
+	filename_template: str = "characters_{timestamp}.csv"
+
+
+class StorageConfig(BaseModel):
+    bucket: str
+    prefix: str = "pokedex/exports/"
+    remote_filename_template: str = "{prefix}{filename}"
+    overwrite: bool = False
+    ttl_days: int | None = Field(default=None, description="Optional lifecycle hint, if backend supports it")
 
 
 class Settings(BaseSettings):
@@ -27,13 +45,16 @@ class Settings(BaseSettings):
 
 	@computed_field
 	@property
-	def national_dex_url(self) -> str:
-		return self.base_url + "pokedex/national"
+	def all_moves_url(self) -> str:
+		return self.base_url + "move/all"
 
 	@computed_field
 	@property
-	def all_moves_url(self) -> str:
-		return self.base_url + "move/all"
+	def national_dex_url(self) -> str:
+		return self.base_dex_url + "national"
+
+	def character_dex_url(self, nameId) -> str:
+		return self.base_dex_url + nameId
 
 
 settings = Settings()

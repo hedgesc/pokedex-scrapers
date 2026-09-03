@@ -1,9 +1,11 @@
+from pokemondb_net_scrapers.scrapers.character_scraper import CharacterScraper
 from pokemondb_net_scrapers.scraping.characters import scrapeAllCharacters
 from pokemondb_net_scrapers.scraping.games_characters import scrapeAllDexCharacters
 from pokemondb_net_scrapers.scraping.dlcs_characters import scrapeAllDlcCharacters
 from pokemondb_net_scrapers.scraping.dexes_characters_moves import scrapeAllCharacterMoves
 from pokemondb_net_scrapers.scraping.moves import scrapeAllMoves
 from pokemondb_net_scrapers.static.repo import listDexes, listGames, listDlcs
+from pokemondb_net_scrapers.services import csv_exporter
 from pokemondb_net_scrapers.config import settings
 
 
@@ -21,46 +23,6 @@ def findCharacterByNameId(nameId):
 
 def findMoveByNameId(nameId):
 	return next(filter(lambda m: m.nameId == nameId, moves), None)
-
-
-def exportCharacters():
-	print("Exporting {0}...".format(settings.characters_csv_file))
-	
-	output_path = settings.csv_output_folder + settings.characters_csv_file
-	csv = open(output_path, "w", encoding="utf-8")
-	csv.truncate(0)
-
-	header = "character_id,pokemon_id,generation,name,total,hp,attack,defense,special_attack,special_defense,speed,name_id,alternate_name,types,abilities,final_evolution_id,is_visible,thumbnail_url,image_url1,image_url2\n"
-
-	csv.write(header)
-
-	for c in characters:
-		csv.write(c.toCsvString())
-
-	csv.close()
-
-	print("Done.")
-	print()
-
-
-def exportGames():
-	print("Exporting {0}...".format(settings.games_csv_file))
-	
-	output_path = settings.csv_output_folder + settings.games_csv_file
-	csv = open(output_path, "w", encoding="utf-8")
-	csv.truncate(0)
-
-	header = "game_id,dex_id,name,name_id,regions\n"
-
-	csv.write(header)
-
-	for g in games:
-		csv.write(g.toCsvString())
-
-	csv.close()
-
-	print("Done.")
-	print()
 
 
 def exportGamesCharacters():
@@ -89,46 +51,6 @@ def exportGamesCharacters():
 		
 		print("\tDone.")
 		print()
-
-	print("Done.")
-	print()
-
-
-def exportDexes():
-	print("Exporting {0}...".format(settings.dexes_csv_file))
-	
-	output_path = settings.csv_output_folder + settings.dexes_csv_file
-	csv = open(output_path, "w", encoding="utf-8")
-	csv.truncate(0)
-
-	header = "dex_id,name,name_id,alternate_name,generation\n"
-
-	csv.write(header)
-
-	for d in dexes:
-		csv.write(d.toCsvString())
-
-	csv.close()
-
-	print("Done.")
-	print()
-
-
-def exportDlcs():
-	print("Exporting {0}...".format(settings.dlcs_csv_file))
-	
-	output_path = settings.csv_output_folder + settings.dlcs_csv_file
-	csv = open(output_path, "w", encoding="utf-8")
-	csv.truncate(0)
-
-	header = "dlc_id,dex_id,name,name_id\n"
-
-	csv.write(header)
-
-	for d in dlcs:
-		csv.write(d.toCsvString())
-
-	csv.close()
 
 	print("Done.")
 	print()
@@ -164,26 +86,6 @@ def exportDlcsCharacters():
 		print("\tDone.")
 		print()
 	
-	print("Done.")
-	print()
-
-
-def exportMoves():
-	print("Exporting {0}...".format(settings.moves_csv_file))
-	
-	output_path = settings.csv_output_folder + settings.moves_csv_file
-	csv = open(output_path, "w", encoding="utf-8")
-	csv.truncate(0)
-
-	header = "move_id,name,name_id,type,category,power,accuracy,pp,effect,probability\n"
-
-	csv.write(header)
-
-	for m in moves:
-		csv.write(m.toCsvString())
-
-	csv.close()
-
 	print("Done.")
 	print()
 
@@ -236,23 +138,23 @@ def exportDexesCharactersMoves():
 
 
 # main
-characters = scrapeAllCharacters()
-exportCharacters()
+# characters = scrapeAllCharacters()
+# csv_exporter.exportCharacters(characters)
 
 games = listGames()
-exportGames()
+csv_exporter.exportGames(games)
 
 dexes = listDexes()
 exportGamesCharacters()
 
-exportDexes()
+csv_exporter.exportDexes(dexes)
 
 dlcs = listDlcs()
-exportDlcs()
+csv_exporter.exportDlcs(dlcs)
 
 exportDlcsCharacters()
 
 moves = scrapeAllMoves()
-exportMoves()
+csv_exporter.exportMoves(moves)
 
 exportDexesCharactersMoves()

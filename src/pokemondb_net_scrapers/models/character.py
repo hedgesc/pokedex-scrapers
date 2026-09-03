@@ -1,29 +1,44 @@
+from pydantic import BaseModel, ConfigDict, Field
+from pydantic.alias_generators import to_snake
+
 from pokemondb_net_scrapers.config import settings
 from pokemondb_net_scrapers.utils import parsing
 
-class Character:
-  def __init__(self):
-    self.characterId = 0
-    self.pokemonId = ''
-    self.name = ''
-    self.total = 0
-    self.hp = 0
-    self.attack = 0
-    self.defense = 0
-    self.specialAttack = 0
-    self.specialDefense = 0
-    self.speed = 0
-    self.nameId = ''
-    self.alternateName = ''
-    self.generation = 0
-    self.finalEvolutionId = ''
-    self.types = []
-    self.abilities = []
-    self.thumbnailUrl = ''
-    self.imageUrl1 = ''
-    self.imageUrl2 = ''
-    self.isVisible = True
-    self.isAlternateForm = False
+class Character(BaseModel):
+  # Auto-generates snake_case aliases (characterId -> character_id, etc.) so
+  # model_dump(by_alias=True) lines up with csv_exporter's registered header.
+  # populate_by_name keeps the camelCase field names usable for construction.
+  model_config = ConfigDict(alias_generator=to_snake, populate_by_name=True)
+
+  name: str
+  nameId: str = ''
+  characterId: int = 0
+  pokemonId: str = ''
+  total: int = 0
+  hp: int = 0
+  attack: int = 0
+  defense: int = 0
+  specialAttack: int = 0
+  specialDefense: int = 0
+  speed: int = 0
+  alternateName: str = ''
+  generation: int = 0
+  finalEvolutionId: str = ''
+  types: list[str] = Field(default_factory=list)
+  abilities: list[str] = Field(default_factory=list)
+  thumbnailUrl: str = ''
+  # to_snake would otherwise produce image_url_1/image_url_2 - override to
+  # match the header's image_url1/image_url2 columns.
+  imageUrl1: str = Field(default='', alias='image_url1')
+  imageUrl2: str = Field(default='', alias='image_url2')
+  isVisible: bool = True
+  isAlternateForm: bool = False
+
+  def __init__(self, name: str, **data) -> None:
+    # nameId is derived from name unless a caller explicitly overrides it -
+    # keeps the old Character(name) construction style working.
+    data.setdefault('nameId', parsing.convertToId(name))
+    super().__init__(name=name, **data)
 
   def serebiiNetImage(self):
     return "https://www.serebii.net/pokemon/art/{0}.png".format(self.pokemonId)
