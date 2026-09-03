@@ -1,3 +1,4 @@
+from pokemondb_net_scrapers.scrapers.character_scraper import CharacterScraper
 from pokemondb_net_scrapers.scraping.characters import scrapeAllCharacters
 from pokemondb_net_scrapers.scraping.games_characters import scrapeAllDexCharacters
 from pokemondb_net_scrapers.scraping.dlcs_characters import scrapeAllDlcCharacters
@@ -137,8 +138,8 @@ def exportDexesCharactersMoves():
 
 
 # main
-characters = scrapeAllCharacters()
-csv_exporter.exportCharacters(characters)
+# characters = scrapeAllCharacters()
+# csv_exporter.exportCharacters(characters)
 
 games = listGames()
 csv_exporter.exportGames(games)

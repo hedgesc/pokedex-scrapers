@@ -2,10 +2,11 @@ from pokemondb_net_scrapers.config import settings
 from pokemondb_net_scrapers.utils import parsing
 
 class Character:
-  def __init__(self):
+  def __init__(self, name: str) -> None:
+    self.name = name
+    self.nameId = parsing.convertToId(name)
     self.characterId = 0
     self.pokemonId = ''
-    self.name = ''
     self.total = 0
     self.hp = 0
     self.attack = 0
@@ -13,7 +14,6 @@ class Character:
     self.specialAttack = 0
     self.specialDefense = 0
     self.speed = 0
-    self.nameId = ''
     self.alternateName = ''
     self.generation = 0
     self.finalEvolutionId = ''
