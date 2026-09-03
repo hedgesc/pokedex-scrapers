@@ -5,7 +5,7 @@ from pathlib import Path
 
 from pokemondb_net_scrapers.config import CharacterExportConfig, StorageConfig
 from pokemondb_net_scrapers.interfaces import StorageClient
-from pokemondb_net_scrapers.models.character import Character
+from pokemondb_net_scrapers.models import Character
 
 
 logger = logging.getLogger(__name__)
