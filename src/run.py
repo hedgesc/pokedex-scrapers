@@ -138,8 +138,8 @@ def exportDexesCharactersMoves():
 
 
 # main
-# characters = scrapeAllCharacters()
-# csv_exporter.exportCharacters(characters)
+characters = scrapeAllCharacters()
+csv_exporter.exportCharacters(characters)
 
 games = listGames()
 csv_exporter.exportGames(games)
