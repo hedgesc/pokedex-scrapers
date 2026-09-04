@@ -198,6 +198,42 @@ def test_dex_get_url():
 	assert d.getUrl() == settings.base_dex_url + "game/red-blue-yellow"
 
 
+def test_dex_model_dump_by_alias_matches_csv_exporter_header():
+	d = Dex(1, "red-blue-yellow", "Red/Blue/Yellow", "Red, Blue & Yellow", 1)
+	dumped = d.model_dump(by_alias=True)
+
+	header_columns = csv_exporter.getCsvHeader(Dex).strip().split(",")
+
+	for column in header_columns:
+		assert column in dumped
+
+	assert dumped["dex_id"] == 1
+	assert dumped["name_id"] == "red-blue-yellow"
+	# to_snake would leave "gen" unchanged - it's explicitly aliased to
+	# match the header's generation column.
+	assert dumped["generation"] == 1
+
+
+def test_dex_populate_by_name_allows_construction_by_alias():
+	d = Dex.model_validate({
+		"dex_id": 2,
+		"name_id": "gold-silver-crystal",
+		"name": "Gold/Silver/Crystal",
+		"alternate_name": "",
+		"generation": 2,
+	})
+
+	assert d.dexId == 2
+	assert d.gen == 2
+
+
+def test_dex_construction_by_keyword_field_name():
+	d = Dex(dexId=3, nameId="ruby-sapphire", name="Ruby/Sapphire", alternateName="", gen=3)
+
+	assert d.dexId == 3
+	assert d.gen == 3
+
+
 # --- Dlc ---------------------------------------------------------------
 
 def test_dlc_to_csv_string():
@@ -208,6 +244,34 @@ def test_dlc_to_csv_string():
 def test_dlc_get_url():
 	d = Dlc(1, 15, "The Isle of Armor", "isle-of-armor")
 	assert d.getUrl("sword-shield") == settings.base_dex_url + "game/sword-shield/isle-of-armor"
+
+
+def test_dlc_model_dump_by_alias_matches_csv_exporter_header():
+	d = Dlc(1, 15, "The Isle of Armor", "isle-of-armor")
+	dumped = d.model_dump(by_alias=True)
+
+	header_columns = csv_exporter.getCsvHeader(Dlc).strip().split(",")
+
+	for column in header_columns:
+		assert column in dumped
+
+	assert dumped["dlc_id"] == 1
+	assert dumped["dex_id"] == 15
+	assert dumped["name_id"] == "isle-of-armor"
+
+
+def test_dlc_populate_by_name_allows_construction_by_alias():
+	d = Dlc.model_validate({"dlc_id": 2, "dex_id": 15, "name": "The Crown Tundra", "name_id": "crown-tundra"})
+
+	assert d.dlcId == 2
+	assert d.dexId == 15
+
+
+def test_dlc_construction_by_keyword_field_name():
+	d = Dlc(dlcId=3, dexId=15, name="The Crown Tundra", nameId="crown-tundra")
+
+	assert d.dlcId == 3
+	assert d.name == "The Crown Tundra"
 
 
 # --- Game ----------------------------------------------------------------
@@ -231,6 +295,35 @@ def test_game_is_in_dex():
 	g = Game(1, 1, "Red", "red", ["Kanto"])
 	assert g.isInDex(1) is True
 	assert g.isInDex(2) is False
+
+
+def test_game_model_dump_by_alias_matches_csv_exporter_header():
+	g = Game(1, 1, "Red", "red", ["Kanto"])
+	dumped = g.model_dump(by_alias=True)
+
+	header_columns = csv_exporter.getCsvHeader(Game).strip().split(",")
+
+	for column in header_columns:
+		assert column in dumped
+
+	assert dumped["game_id"] == 1
+	assert dumped["dex_id"] == 1
+	assert dumped["name_id"] == "red"
+
+
+def test_game_populate_by_name_allows_construction_by_alias():
+	g = Game.model_validate({"game_id": 2, "dex_id": 1, "name": "Blue", "name_id": "blue", "regions": ["Kanto"]})
+
+	assert g.gameId == 2
+	assert g.dexId == 1
+	assert g.nameId == "blue"
+
+
+def test_game_construction_by_keyword_field_name():
+	g = Game(gameId=3, dexId=1, name="Yellow", nameId="yellow", regions=["Kanto"])
+
+	assert g.gameId == 3
+	assert g.name == "Yellow"
 
 
 # --- Move ------------------------------------------------------------------
