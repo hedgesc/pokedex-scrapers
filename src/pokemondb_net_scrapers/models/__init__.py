@@ -6,6 +6,7 @@ from .dex_move import DexMove
 from .dlc import Dlc
 from .dlc_character import DlcCharacter
 from .game import Game
+from .game_character import GameCharacter
 from .move import Move
 
 __all__ = [
@@ -17,5 +18,6 @@ __all__ = [
 	"Dlc",
 	"DlcCharacter",
 	"Game",
+	"GameCharacter",
 	"Move",
 ]
