@@ -377,6 +377,42 @@ def test_move_to_csv_string():
 	assert m.toCsvString() == '1,"Tackle",tackle,Normal,Physical,40,100,35,"Inflicts regular damage.",—\n'
 
 
+def test_move_defaults_before_move_id_set():
+	m = Move("Tackle", "tackle", "Normal", "Physical", "40", "100", "35", "Inflicts regular damage.", "—")
+	assert m.moveId == 0
+
+
+def test_move_model_dump_by_alias_uses_snake_case():
+	m = Move("Tackle", "tackle", "Normal", "Physical", "40", "100", "35", "Inflicts regular damage.", "—")
+	m.moveId = 1
+	dumped = m.model_dump(by_alias=True)
+
+	assert dumped["move_id"] == 1
+	assert dumped["name"] == "Tackle"
+	assert dumped["name_id"] == "tackle"
+	assert dumped["type"] == "Normal"
+	assert dumped["category"] == "Physical"
+	assert dumped["pp"] == "35"
+
+
+def test_move_populate_by_name_allows_construction_by_alias():
+	m = Move.model_validate({
+		"name": "Tackle",
+		"name_id": "tackle",
+		"type": "Normal",
+		"category": "Physical",
+		"power": "40",
+		"accuracy": "100",
+		"pp": "35",
+		"effect": "Inflicts regular damage.",
+		"probability": "—",
+		"move_id": 1,
+	})
+
+	assert m.nameId == "tackle"
+	assert m.moveId == 1
+
+
 # --- DexCharacter ------------------------------------------------------
 
 def test_dex_character_defaults():

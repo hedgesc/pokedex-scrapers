@@ -25,6 +25,7 @@ class StorageConfig(BaseModel):
 class CacheConfig(BaseModel):
 	characters_key_prefix: str = "characters:"
 	dexes_key_prefix: str = "dexes:"
+	moves_key_prefix: str = "moves:"
 	ttl_seconds: int | None = Field(default=None, description="Optional cache entry lifetime, if backend supports it")
 	raise_on_cache_error: bool = Field(
         default=False,
