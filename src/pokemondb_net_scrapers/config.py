@@ -22,6 +22,17 @@ class StorageConfig(BaseModel):
     ttl_days: int | None = Field(default=None, description="Optional lifecycle hint, if backend supports it")
 
 
+class CacheConfig(BaseModel):
+	characters_key_prefix: str = "characters:"
+	dexes_key_prefix: str = "dexes:"
+	moves_key_prefix: str = "moves:"
+	ttl_seconds: int | None = Field(default=None, description="Optional cache entry lifetime, if backend supports it")
+	raise_on_cache_error: bool = Field(
+        default=False,
+        description="If False, a cache.set() failure is logged and skipped rather than failing the whole build.",
+    )
+
+
 class Settings(BaseSettings):
 	model_config = SettingsConfigDict(env_prefix="POKEMONDB_", env_file=".env", extra="ignore")
 
@@ -55,6 +66,12 @@ class Settings(BaseSettings):
 
 	def character_dex_url(self, nameId) -> str:
 		return self.base_dex_url + nameId
+
+	def game_dex_url(self, nameId) -> str:
+		return self.base_dex_url + "game/" + nameId
+
+	def dlc_dex_url(self, dexNameId, dlcNameId) -> str:
+		return self.base_dex_url + "game/" + dexNameId + "/" + dlcNameId
 
 
 settings = Settings()

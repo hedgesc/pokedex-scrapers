@@ -9,6 +9,7 @@ from pokemondb_net_scrapers.models.dex_move import DexMove
 from pokemondb_net_scrapers.models.dlc import Dlc
 from pokemondb_net_scrapers.models.dlc_character import DlcCharacter
 from pokemondb_net_scrapers.models.game import Game
+from pokemondb_net_scrapers.models.game_character import GameCharacter
 from pokemondb_net_scrapers.models.move import Move
 from pokemondb_net_scrapers.services import csv_exporter
 
@@ -326,12 +327,90 @@ def test_game_construction_by_keyword_field_name():
 	assert g.name == "Yellow"
 
 
+# --- GameCharacter -------------------------------------------------------
+
+def test_game_character_defaults():
+	gc = GameCharacter("bulbasaur", "0001", "thumb.png")
+	assert gc.gameId == 0
+	assert gc.characterId == 0
+
+
+def test_game_character_to_csv_string():
+	gc = GameCharacter("bulbasaur", "0001", "thumb.png")
+	gc.gameId = 1
+	gc.characterId = 5
+	assert gc.toCsvString() == '1,5,0001,"thumb.png"\n'
+
+
+def test_game_character_model_dump_by_alias_uses_snake_case():
+	gc = GameCharacter("bulbasaur", "0001", "thumb.png")
+	gc.gameId = 1
+	gc.characterId = 5
+	dumped = gc.model_dump(by_alias=True)
+
+	assert dumped["game_id"] == 1
+	assert dumped["character_id"] == 5
+	assert dumped["pokemon_id"] == "0001"
+	assert dumped["thumbnail_url"] == "thumb.png"
+	assert dumped["name_id"] == "bulbasaur"
+
+
+def test_game_character_populate_by_name_allows_construction_by_alias():
+	gc = GameCharacter.model_validate({
+		"name_id": "bulbasaur",
+		"pokemon_id": "0001",
+		"thumbnail_url": "thumb.png",
+		"game_id": 1,
+		"character_id": 5,
+	})
+
+	assert gc.nameId == "bulbasaur"
+	assert gc.gameId == 1
+	assert gc.characterId == 5
+
+
 # --- Move ------------------------------------------------------------------
 
 def test_move_to_csv_string():
 	m = Move("Tackle", "tackle", "Normal", "Physical", "40", "100", "35", "Inflicts regular damage.", "—")
 	m.moveId = 1
 	assert m.toCsvString() == '1,"Tackle",tackle,Normal,Physical,40,100,35,"Inflicts regular damage.",—\n'
+
+
+def test_move_defaults_before_move_id_set():
+	m = Move("Tackle", "tackle", "Normal", "Physical", "40", "100", "35", "Inflicts regular damage.", "—")
+	assert m.moveId == 0
+
+
+def test_move_model_dump_by_alias_uses_snake_case():
+	m = Move("Tackle", "tackle", "Normal", "Physical", "40", "100", "35", "Inflicts regular damage.", "—")
+	m.moveId = 1
+	dumped = m.model_dump(by_alias=True)
+
+	assert dumped["move_id"] == 1
+	assert dumped["name"] == "Tackle"
+	assert dumped["name_id"] == "tackle"
+	assert dumped["type"] == "Normal"
+	assert dumped["category"] == "Physical"
+	assert dumped["pp"] == "35"
+
+
+def test_move_populate_by_name_allows_construction_by_alias():
+	m = Move.model_validate({
+		"name": "Tackle",
+		"name_id": "tackle",
+		"type": "Normal",
+		"category": "Physical",
+		"power": "40",
+		"accuracy": "100",
+		"pp": "35",
+		"effect": "Inflicts regular damage.",
+		"probability": "—",
+		"move_id": 1,
+	})
+
+	assert m.nameId == "tackle"
+	assert m.moveId == 1
 
 
 # --- DexCharacter ------------------------------------------------------
@@ -362,6 +441,33 @@ def test_dlc_character_to_csv_string():
 	dc.dlcId = 2
 	dc.characterId = 5
 	assert dc.toCsvString() == '2,5,0001,"thumb.png"\n'
+
+
+def test_dlc_character_model_dump_by_alias_uses_snake_case():
+	dc = DlcCharacter("bulbasaur", "0001", "thumb.png")
+	dc.dlcId = 2
+	dc.characterId = 5
+	dumped = dc.model_dump(by_alias=True)
+
+	assert dumped["dlc_id"] == 2
+	assert dumped["character_id"] == 5
+	assert dumped["pokemon_id"] == "0001"
+	assert dumped["thumbnail_image"] == "thumb.png"
+	assert dumped["name_id"] == "bulbasaur"
+
+
+def test_dlc_character_populate_by_name_allows_construction_by_alias():
+	dc = DlcCharacter.model_validate({
+		"name_id": "bulbasaur",
+		"pokemon_id": "0001",
+		"thumbnail_image": "thumb.png",
+		"dlc_id": 2,
+		"character_id": 5,
+	})
+
+	assert dc.nameId == "bulbasaur"
+	assert dc.dlcId == 2
+	assert dc.characterId == 5
 
 
 # --- DexMove -------------------------------------------------------------

@@ -35,7 +35,7 @@ def makeDlc(dlcId, name):
 
 
 def makeMove(moveId, name):
-	m = Move(name, name.lower(), "Normal", "Physical", 40, 100, 35, "", "")
+	m = Move(name, name.lower(), "Normal", "Physical", "40", "100", "35", "", "")
 	m.moveId = moveId
 
 	return m
