@@ -13,9 +13,11 @@ authors = [
 ]
 dependencies = [
     "beautifulsoup4>=4.15",
+    "fsspec>=2024.10",
     "pydantic>=2.9",
     "pydantic-settings>=2.15",
     "pyyaml>=6.0",
+    "redis>=5.2",
 ]
 
 [project.optional-dependencies]

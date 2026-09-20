@@ -39,6 +39,18 @@ class Settings(BaseSettings):
 	base_url: str = "https://pokemondb.net/"
 	current_gen: int = 8
 
+	# Backs RedisCacheClient - shared across pipeline jobs so cross-entity id
+	# resolution (nameId -> id) works when each pipeline runs as its own RQ
+	# job rather than a step of one in-process script.
+	redis_url: str = "redis://localhost:6379/0"
+
+	# Backs BlobStorageClient's remote path for an exported CSV, via
+	# StorageConfig(bucket=storage_bucket, prefix=storage_prefix). bucket is
+	# a full URI root (e.g. "s3://my-bucket", "gs://my-bucket") - fsspec
+	# picks the concrete backend from its scheme.
+	storage_bucket: str = ""
+	storage_prefix: str = "pokedex/exports/"
+
 	csv_output_folder: str = "data\\"
 	characters_csv_file: str = "characters.csv"
 	dexes_csv_file: str = "dexes.csv"

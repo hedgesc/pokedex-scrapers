@@ -6,7 +6,9 @@ from pokemondb_net_scrapers.config import settings
 from pokemondb_net_scrapers.models.character import Character
 from pokemondb_net_scrapers.models.dex import Dex
 from pokemondb_net_scrapers.models.dlc import Dlc
+from pokemondb_net_scrapers.models.dlc_character import DlcCharacter
 from pokemondb_net_scrapers.models.game import Game
+from pokemondb_net_scrapers.models.game_character import GameCharacter
 from pokemondb_net_scrapers.models.move import Move
 from pokemondb_net_scrapers.services import csv_exporter
 
@@ -41,6 +43,22 @@ def makeMove(moveId, name):
 	return m
 
 
+def makeGameCharacter(gameId, characterId, pokemonId):
+	gc = GameCharacter("pikachu", pokemonId, "thumb.png")
+	gc.gameId = gameId
+	gc.characterId = characterId
+
+	return gc
+
+
+def makeDlcCharacter(dlcId, characterId, pokemonId):
+	dc = DlcCharacter("kubfu", pokemonId, "thumb.png")
+	dc.dlcId = dlcId
+	dc.characterId = characterId
+
+	return dc
+
+
 def test_get_output_folder_returns_configured_folder():
 	assert csv_exporter.getOutputFolder() == settings.csv_output_folder
 
@@ -48,8 +66,10 @@ def test_get_output_folder_returns_configured_folder():
 @pytest.mark.parametrize("modelClass,expectedPrefix", [
 	(Character, "character_id,pokemon_id,"),
 	(Game, "game_id,dex_id,"),
+	(GameCharacter, "game_id,character_id,"),
 	(Dex, "dex_id,name,"),
 	(Dlc, "dlc_id,dex_id,"),
+	(DlcCharacter, "dlc_id,character_id,"),
 	(Move, "move_id,name,"),
 ])
 def test_get_csv_header_returns_registered_header(modelClass, expectedPrefix):
@@ -70,8 +90,10 @@ def test_get_csv_header_raises_for_unregistered_model():
 @pytest.mark.parametrize("modelClass,settingsField", [
 	(Character, "characters_csv_file"),
 	(Game, "games_csv_file"),
+	(GameCharacter, "games_characters_csv_file"),
 	(Dex, "dexes_csv_file"),
 	(Dlc, "dlcs_csv_file"),
+	(DlcCharacter, "dlcs_characters_csv_file"),
 	(Move, "moves_csv_file"),
 ])
 def test_get_output_path_uses_settings_filename(monkeypatch, tmp_path, modelClass, settingsField):
@@ -140,6 +162,38 @@ def test_export_overwrites_existing_file(monkeypatch, tmp_path):
 def test_export_raises_on_empty_list():
 	with pytest.raises(ValueError):
 		csv_exporter.export([])
+
+
+def test_export_writes_game_characters(monkeypatch, tmp_path):
+	monkeypatch.setattr(settings, "csv_output_folder", str(tmp_path))
+	monkeypatch.setattr(settings, "games_characters_csv_file", "games_characters.csv")
+
+	rows = [makeGameCharacter(1, 25, "0025"), makeGameCharacter(1, 26, "0026")]
+
+	output_path = csv_exporter.export(rows)
+
+	with open(output_path, encoding="utf-8") as f:
+		lines = f.readlines()
+
+	assert lines[0] == csv_exporter.getCsvHeader(GameCharacter)
+	assert len(lines) == 3
+	assert "0025" in lines[1]
+
+
+def test_export_writes_dlc_characters(monkeypatch, tmp_path):
+	monkeypatch.setattr(settings, "csv_output_folder", str(tmp_path))
+	monkeypatch.setattr(settings, "dlcs_characters_csv_file", "dlcs_characters.csv")
+
+	rows = [makeDlcCharacter(1, 891, "0891"), makeDlcCharacter(1, 892, "0892")]
+
+	output_path = csv_exporter.export(rows)
+
+	with open(output_path, encoding="utf-8") as f:
+		lines = f.readlines()
+
+	assert lines[0] == csv_exporter.getCsvHeader(DlcCharacter)
+	assert len(lines) == 3
+	assert "0891" in lines[1]
 
 
 def test_export_characters_writes_header_and_rows(monkeypatch, tmp_path, capsys):
