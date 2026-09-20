@@ -156,53 +156,13 @@ def test_build_raises_on_cache_error_when_configured():
         builder.build()
 
 
-# --- _pokemondb_html: InfocardTag ---------------------------------------
-
-def test_infocard_tag_select_name():
-    card = make_tag('<div class="infocard"><a class="ent-name">Bulbasaur</a></div>')
-    assert InfocardTag(card).select_name() == "Bulbasaur"
-
-
-def test_infocard_tag_select_name_missing_returns_empty_string():
-    card = make_tag('<div class="infocard"></div>')
-    assert InfocardTag(card).select_name() == ""
-
-
-def test_infocard_tag_select_image_prefers_src_over_data_src():
-    card = make_tag(
-        '<div class="infocard"><div class="infocard-lg-img"><a>'
-        '<span class="img-sprite" src="bulba.png" data-src="lazy.png"></span></a></div></div>'
-    )
-    assert InfocardTag(card).select_image() == "bulba.png"
-
-
-def test_infocard_tag_select_image_falls_back_to_data_src():
-    card = make_tag(
-        '<div class="infocard"><div class="infocard-lg-img"><a>'
-        '<span class="img-sprite" data-src="lazy.png"></span></a></div></div>'
-    )
-    assert InfocardTag(card).select_image() == "lazy.png"
-
-
-def test_infocard_tag_select_image_missing_returns_empty_string():
-    card = make_tag('<div class="infocard"></div>')
-    assert InfocardTag(card).select_image() == ""
-
-
-def test_infocard_tag_select_pokemon_id_strips_hash():
-    card = make_tag('<div class="infocard"><div class="infocard-lg-data"><small>#001</small></div></div>')
-    assert InfocardTag(card).select_pokemon_id() == "001"
-
-
-def test_infocard_tag_select_types():
-    card = make_tag(
-        '<div class="infocard"><span class="itype grass">Grass</span>'
-        '<span class="itype poison">Poison</span></div>'
-    )
-    assert InfocardTag(card).select_types() == ["Grass", "Poison"]
-
-
 # --- _pokemondb_html: NationalDexPage ------------------------------------
+#
+# InfocardTag itself is shared cross-pipeline now (see
+# pokemondb_net_scrapers.shared.infocard_html and
+# tests/test_shared_infocard_html.py) - it's still imported here because
+# NationalDexPage returns it, but its own selector behavior is no longer
+# tested from this file.
 
 NATIONAL_DEX_HTML = """
 <div class="infocard-list">

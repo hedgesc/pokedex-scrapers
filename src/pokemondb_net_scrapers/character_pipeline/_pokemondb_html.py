@@ -1,44 +1,27 @@
 """Private HTML-selector knowledge for PokemonDbCharacterSource.
 
-Every BeautifulSoup selector pokemondb.net's markup requires lives here, and
-only here. If a page's markup changes, this is the only module that should
-need to change - pokemondb_source.py just orchestrates these wrapper classes.
+Every BeautifulSoup selector pokemondb.net's markup requires for the
+character detail/national-dex pages lives here, and only here (the
+InfocardTag it also uses is shared cross-pipeline - see
+pokemondb_net_scrapers.shared.infocard_html - so it isn't defined here even
+though this module was its original home). If a page's markup changes, this
+is the only module that should need to change - pokemondb_source.py just
+orchestrates these wrapper classes.
 """
 
 from bs4 import Tag
 
 from pokemondb_net_scrapers.models.character import BaseStats
+from pokemondb_net_scrapers.shared.infocard_html import InfocardTag
 from pokemondb_net_scrapers.utils import parsing, web
 
-
-class InfocardTag:
-    def __init__(self, tag: Tag) -> None:
-        self._tag = tag
-
-    def select_name(self) -> str:
-        name = self._tag.select_one(".ent-name")
-        return name.get_text() if name is not None else ""
-
-    def select_image(self) -> str:
-        img = self._tag.select_one(".infocard-lg-img > a > .img-sprite")
-
-        if img is None:
-            return ""
-
-        if img.has_attr("src"):
-            return str(img.attrs["src"])
-
-        if img.has_attr("data-src"):
-            return str(img.attrs["data-src"])
-
-        return ""
-
-    def select_pokemon_id(self) -> str:
-        small = self._tag.select_one(".infocard-lg-data > small")
-        return small.get_text().replace("#", "") if small is not None else ""
-
-    def select_types(self) -> list[str]:
-        return [t.get_text() for t in self._tag.select(".itype")]
+__all__ = [
+    "CharacterDetailPage",
+    "CharacterTabPanelTag",
+    "CharacterTabTag",
+    "InfocardTag",
+    "NationalDexPage",
+]
 
 
 class NationalDexPage:

@@ -1,4 +1,4 @@
-from pokemondb_net_scrapers.character_pipeline._pokemondb_html import InfocardTag
+from pokemondb_net_scrapers.shared.infocard_html import InfocardTag
 from pokemondb_net_scrapers.utils import web
 
 
