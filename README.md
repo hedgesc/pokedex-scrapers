@@ -13,12 +13,7 @@ pip install -e ".[dev]"
 
 ## Running the scraper
 
-Output CSVs are written to `src/data/`, using a path relative to the working directory, so run from `src/`:
-
-```
-cd src
-python run.py
-```
+There is currently no working full-scrape entry point. The package is mid-migration from its original `run.py` orchestrator to a set of per-entity pipelines (see `CLAUDE.md`), and `run.py` has been archived to `archive_v2/src/run.py` along with most of the code it drove — nothing has replaced it yet.
 
 ## Running tests
 
