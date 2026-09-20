@@ -12,15 +12,19 @@ from pokemondb_net_scrapers.config import settings
 from pokemondb_net_scrapers.models.character import Character
 from pokemondb_net_scrapers.models.dex import Dex
 from pokemondb_net_scrapers.models.dlc import Dlc
+from pokemondb_net_scrapers.models.dlc_character import DlcCharacter
 from pokemondb_net_scrapers.models.game import Game
+from pokemondb_net_scrapers.models.game_character import GameCharacter
 from pokemondb_net_scrapers.models.move import Move
 
 # model class -> CSV header row for that model's export file
 csvHeadersByModel = {
 	Character: "character_id,pokemon_id,generation,name,total,hp,attack,defense,special_attack,special_defense,speed,name_id,alternate_name,types,abilities,final_evolution_id,is_visible,thumbnail_url,image_url1,image_url2\n",
 	Game: "game_id,dex_id,name,name_id,regions\n",
+	GameCharacter: "game_id,character_id,pokemon_id,thumbnail_url\n",
 	Dex: "dex_id,name,name_id,alternate_name,generation\n",
 	Dlc: "dlc_id,dex_id,name,name_id\n",
+	DlcCharacter: "dlc_id,character_id,pokemon_id,thumbnail_image\n",
 	Move: "move_id,name,name_id,type,category,power,accuracy,pp,effect,probability\n",
 }
 
@@ -28,8 +32,10 @@ csvHeadersByModel = {
 csvFilesByModel = {
 	Character: "characters_csv_file",
 	Game: "games_csv_file",
+	GameCharacter: "games_characters_csv_file",
 	Dex: "dexes_csv_file",
 	Dlc: "dlcs_csv_file",
+	DlcCharacter: "dlcs_characters_csv_file",
 	Move: "moves_csv_file",
 }
 

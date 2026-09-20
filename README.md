@@ -13,7 +13,35 @@ pip install -e ".[dev]"
 
 ## Running the scraper
 
-There is currently no working full-scrape entry point. The package is mid-migration from its original `run.py` orchestrator to a set of per-entity pipelines (see `CLAUDE.md`), and `run.py` has been archived to `archive_v2/src/run.py` along with most of the code it drove — nothing has replaced it yet.
+There is no single full-scrape command — the package is mid-migration from its original `run.py` orchestrator to a set of per-entity pipelines (see `CLAUDE.md`), and `run.py` has been archived to `archive_v2/src/run.py` along with most of the code it drove.
+
+In its place, each pipeline is exported as one background job, meant to be scheduled independently (this project uses [RQ](https://python-rq.org/)) rather than run as one in-process script:
+
+```python
+from redis import Redis
+from rq import Queue
+
+from pokemondb_net_scrapers.jobs import export_pipeline_to_csv
+
+queue = Queue(connection=Redis())
+job = queue.enqueue(export_pipeline_to_csv, "characters")
+```
+
+`export_pipeline_to_csv(pipeline_name)` scrapes/loads that pipeline's data, exports it to a CSV file, uploads it, and returns the uploaded file's URI. Only the pipeline name — a plain string — needs to cross the queue; everything else (the `Builder`, the cache client, the storage client) is constructed inside the worker when the job runs.
+
+Currently registered pipeline names: `characters`, `dexes`, `games`, `dlcs`, `moves`, `games_characters`, `dlcs_characters`. (`dexes_characters_moves` doesn't have a pipeline yet, so it isn't an option here.)
+
+**Job ordering is the caller's responsibility, not this package's.** `games_characters` and `dlcs_characters` resolve `characterId`/`dexId` by reading the shared cache the `characters`/`dexes` jobs populate — if a dependent job runs before its dependency has finished, it raises (`CacheKeyNotFoundError` or similar) rather than waiting or guessing. Schedule `characters` and `dexes` before `games_characters`/`dlcs_characters`, and let your job queue's own retry policy handle a job that ran too early.
+
+Configuration (env vars, prefixed `POKEMONDB_`, or a `.env` file — see `config.py`):
+
+| Setting | Purpose | Default |
+| --- | --- | --- |
+| `POKEMONDB_REDIS_URL` | Backs the shared cache (`RedisCacheClient`) | `redis://localhost:6379/0` |
+| `POKEMONDB_STORAGE_BUCKET` | Upload destination root, as a full URI (e.g. `s3://my-bucket`, `gs://my-bucket`) | `""` (must be set) |
+| `POKEMONDB_STORAGE_PREFIX` | Path prefix under the bucket each export is written to | `pokedex/exports/` |
+
+Uploads go through [`fsspec`](https://filesystem-spec.readthedocs.io/), so the concrete storage backend is selected by `STORAGE_BUCKET`'s URI scheme at install time, not hardcoded — install whichever backend package that scheme needs alongside this package (`s3fs` for `s3://`, `gcsfs` for `gs://`, `adlfs` for `az://`, ...).
 
 ## Running tests
 
