@@ -2,25 +2,6 @@
 
 from pydantic import computed_field, BaseModel, Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from pathlib import Path
-
-class ExportConfig(BaseModel):
-	output_dir: Path = Path("./exports")
-	columns: list[str] | None = None
-	encoding: str = "utf-8"
-
-
-class CharacterExportConfig(ExportConfig):
-	filename_template: str = "characters_{timestamp}.csv"
-
-
-class StorageConfig(BaseModel):
-    bucket: str
-    prefix: str = "pokedex/exports/"
-    remote_filename_template: str = "{prefix}{filename}"
-    overwrite: bool = False
-    ttl_days: int | None = Field(default=None, description="Optional lifecycle hint, if backend supports it")
-
 
 class CacheConfig(BaseModel):
 	characters_key_prefix: str = "characters:"
@@ -44,13 +25,9 @@ class Settings(BaseSettings):
 	# job rather than a step of one in-process script.
 	redis_url: str = "redis://localhost:6379/0"
 
-	# Backs BlobStorageClient's remote path for an exported CSV, via
-	# StorageConfig(bucket=storage_bucket, prefix=storage_prefix). bucket is
-	# a full URI root (e.g. "s3://my-bucket", "gs://my-bucket") - fsspec
-	# picks the concrete backend from its scheme.
-	storage_bucket: str = ""
-	storage_prefix: str = "pokedex/exports/"
-
+	# Where each pipeline job writes its exported CSV. Uploading it
+	# elsewhere (if at all) is the job scheduler's responsibility, not this
+	# package's - see jobs.py.
 	csv_output_folder: str = "data\\"
 	characters_csv_file: str = "characters.csv"
 	dexes_csv_file: str = "dexes.csv"

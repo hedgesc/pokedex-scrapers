@@ -27,7 +27,7 @@ queue = Queue(connection=Redis())
 job = queue.enqueue(export_pipeline_to_csv, "characters")
 ```
 
-`export_pipeline_to_csv(pipeline_name)` scrapes/loads that pipeline's data, exports it to a CSV file, uploads it, and returns the uploaded file's URI. Only the pipeline name — a plain string — needs to cross the queue; everything else (the `Builder`, the cache client, the storage client) is constructed inside the worker when the job runs.
+`export_pipeline_to_csv(pipeline_name)` scrapes/loads that pipeline's data, exports it to a local CSV file, and returns the file's path. Only the pipeline name — a plain string — needs to cross the queue; everything else (the `Builder`, the cache client) is constructed inside the worker when the job runs. **Uploading the exported file anywhere is the job scheduler's responsibility, not this package's** — there's deliberately no storage/upload client here.
 
 Currently registered pipeline names: `characters`, `dexes`, `games`, `dlcs`, `moves`, `games_characters`, `dlcs_characters`. (`dexes_characters_moves` doesn't have a pipeline yet, so it isn't an option here.)
 
@@ -38,10 +38,7 @@ Configuration (env vars, prefixed `POKEMONDB_`, or a `.env` file — see `config
 | Setting | Purpose | Default |
 | --- | --- | --- |
 | `POKEMONDB_REDIS_URL` | Backs the shared cache (`RedisCacheClient`) | `redis://localhost:6379/0` |
-| `POKEMONDB_STORAGE_BUCKET` | Upload destination root, as a full URI (e.g. `s3://my-bucket`, `gs://my-bucket`) | `""` (must be set) |
-| `POKEMONDB_STORAGE_PREFIX` | Path prefix under the bucket each export is written to | `pokedex/exports/` |
-
-Uploads go through [`fsspec`](https://filesystem-spec.readthedocs.io/), so the concrete storage backend is selected by `STORAGE_BUCKET`'s URI scheme at install time, not hardcoded — install whichever backend package that scheme needs alongside this package (`s3fs` for `s3://`, `gcsfs` for `gs://`, `adlfs` for `az://`, ...).
+| `POKEMONDB_CSV_OUTPUT_FOLDER` | Where each job writes its exported CSV | `data\` |
 
 ## Running tests
 
