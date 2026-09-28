@@ -1,4 +1,4 @@
-"""The scrape/export/upload entry point RQ jobs call.
+"""The scrape/export entry point RQ jobs call.
 
     queue.enqueue(export_pipeline_to_csv, "characters")
 
@@ -10,31 +10,27 @@ scheduler's own retry policy can re-run the job once its dependency has
 landed, rather than this module guessing at a wait/backoff of its own.
 
 Only a plain pipeline-name string crosses the queue: RQ pickles a reference
-to export_pipeline_to_csv plus its arguments, and a live Builder/CacheClient/
-StorageClient isn't something that survives that - each one is constructed
-fresh inside the worker process, when the job actually runs.
-"""
+to export_pipeline_to_csv plus its arguments, and a live Builder/CacheClient
+isn't something that survives that - each one is constructed fresh inside
+the worker process, when the job actually runs.
 
-from pathlib import Path
+Uploading the exported file (if at all) is the job scheduler's job, not
+this module's - export_pipeline_to_csv only writes the local CSV and
+returns its path; there is deliberately no StorageClient/upload step here.
+"""
 
 from .caching import RedisCacheClient
 from .character_pipeline import CharacterBuilder, PokemonDbCharacterSource
-from .config import StorageConfig, settings
 from .dex_pipeline import DexBuilder, StaticYamlDexSource
 from .dlc_pipeline import DlcBuilder, DlcCharacterBuilder, PokemonDbDlcCharacterSource, StaticYamlDlcSource
 from .game_pipeline import GameBuilder, GameCharacterBuilder, PokemonDbGameCharacterSource, StaticYamlGameSource
-from .interfaces import CacheClient, StorageClient
+from .interfaces import CacheClient
 from .move_pipeline import MoveBuilder, PokemonDbMoveSource
 from .services import csv_exporter
-from .storage import BlobStorageClient
 
 
 def get_cache_client() -> CacheClient:
     return RedisCacheClient()
-
-
-def get_storage_client() -> StorageClient:
-    return BlobStorageClient()
 
 
 def _characters():
@@ -88,16 +84,9 @@ _BUILDERS = {
 }
 
 
-def _remote_path(local_path: str) -> str:
-    cfg = StorageConfig(bucket=settings.storage_bucket, prefix=settings.storage_prefix)
-    filename = Path(local_path).name
-    key = cfg.remote_filename_template.format(prefix=cfg.prefix, filename=filename)
-    return "{0}/{1}".format(cfg.bucket.rstrip("/"), key)
-
-
 def export_pipeline_to_csv(pipeline_name: str) -> str:
-    """Scrape/load pipeline_name's data, export it to CSV, upload it, and
-    return the uploaded file's URI.
+    """Scrape/load pipeline_name's data, export it to a local CSV file, and
+    return the file's path.
 
     Raises KeyError for an unregistered pipeline_name. Any error the
     underlying Builder raises (a cross-entity cache miss included) is left
@@ -108,6 +97,5 @@ def export_pipeline_to_csv(pipeline_name: str) -> str:
 
     builder = _BUILDERS[pipeline_name]()
     items = builder.build()
-    local_path = csv_exporter.export(items)
 
-    return get_storage_client().upload_file(local_path, _remote_path(local_path))
+    return csv_exporter.export(items)
