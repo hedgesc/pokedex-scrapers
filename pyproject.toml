@@ -15,8 +15,6 @@ dependencies = [
     "beautifulsoup4>=4.15",
     "pydantic>=2.9",
     "pydantic-settings>=2.15",
-    "pyyaml>=6.0",
-    "redis>=5.2",
 ]
 
 [project.optional-dependencies]
@@ -31,7 +29,7 @@ source = "vcs"
 fallback_version = "0.0.0"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/pokemondb_net_scrapers"]
+packages = ["src/pokemondb_net_scrapers", "src/scraping_shared"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
