@@ -2,16 +2,12 @@ from bs4 import BeautifulSoup
 
 from pokemondb_net_scrapers.config import settings
 from pokemondb_net_scrapers.models.character import BaseStats, Character, CharacterTab, DexMovesTab
-from pokemondb_net_scrapers.models.character_dex_move import CharacterDexMove
+from pokemondb_net_scrapers.models.character_seed import CharacterSeed
 from pokemondb_net_scrapers.models.dex import Dex
-from pokemondb_net_scrapers.models.dex_character import DexCharacter
-from pokemondb_net_scrapers.models.dex_move import DexMove
-from pokemondb_net_scrapers.models.dlc import Dlc
-from pokemondb_net_scrapers.models.dlc_character import DlcCharacter
-from pokemondb_net_scrapers.models.game import Game
-from pokemondb_net_scrapers.models.game_character import GameCharacter
+from pokemondb_net_scrapers.models.dex_character import DexCharacter, GameCharacter
+from pokemondb_net_scrapers.models.game_character_move import GameCharacterMove
+from pokemondb_net_scrapers.models.game_move import GameMove
 from pokemondb_net_scrapers.models.move import Move
-from pokemondb_net_scrapers.services import csv_exporter
 
 
 def makeTag(html):
@@ -83,16 +79,6 @@ def test_character_model_dump_by_alias_uses_snake_case():
 	# explicitly overridden to match csv_exporter's header columns.
 	assert dumped["image_url1"] == "img1.png"
 	assert dumped["image_url2"] == "img2.png"
-
-
-def test_character_model_dump_by_alias_matches_csv_exporter_header():
-	c = makeCharacter()
-	dumped = c.model_dump(by_alias=True)
-
-	header_columns = csv_exporter.getCsvHeader(Character).strip().split(",")
-
-	for column in header_columns:
-		assert column in dumped
 
 
 def test_character_populate_by_name_allows_construction_by_alias():
@@ -199,14 +185,9 @@ def test_dex_get_url():
 	assert d.getUrl() == settings.base_dex_url + "game/red-blue-yellow"
 
 
-def test_dex_model_dump_by_alias_matches_csv_exporter_header():
+def test_dex_model_dump_by_alias_uses_generation_column():
 	d = Dex(1, "red-blue-yellow", "Red/Blue/Yellow", "Red, Blue & Yellow", 1)
 	dumped = d.model_dump(by_alias=True)
-
-	header_columns = csv_exporter.getCsvHeader(Dex).strip().split(",")
-
-	for column in header_columns:
-		assert column in dumped
 
 	assert dumped["dex_id"] == 1
 	assert dumped["name_id"] == "red-blue-yellow"
@@ -233,98 +214,6 @@ def test_dex_construction_by_keyword_field_name():
 
 	assert d.dexId == 3
 	assert d.gen == 3
-
-
-# --- Dlc ---------------------------------------------------------------
-
-def test_dlc_to_csv_string():
-	d = Dlc(1, 15, "The Isle of Armor", "isle-of-armor")
-	assert d.toCsvString() == '1,15,"The Isle of Armor",isle-of-armor\n'
-
-
-def test_dlc_get_url():
-	d = Dlc(1, 15, "The Isle of Armor", "isle-of-armor")
-	assert d.getUrl("sword-shield") == settings.base_dex_url + "game/sword-shield/isle-of-armor"
-
-
-def test_dlc_model_dump_by_alias_matches_csv_exporter_header():
-	d = Dlc(1, 15, "The Isle of Armor", "isle-of-armor")
-	dumped = d.model_dump(by_alias=True)
-
-	header_columns = csv_exporter.getCsvHeader(Dlc).strip().split(",")
-
-	for column in header_columns:
-		assert column in dumped
-
-	assert dumped["dlc_id"] == 1
-	assert dumped["dex_id"] == 15
-	assert dumped["name_id"] == "isle-of-armor"
-
-
-def test_dlc_populate_by_name_allows_construction_by_alias():
-	d = Dlc.model_validate({"dlc_id": 2, "dex_id": 15, "name": "The Crown Tundra", "name_id": "crown-tundra"})
-
-	assert d.dlcId == 2
-	assert d.dexId == 15
-
-
-def test_dlc_construction_by_keyword_field_name():
-	d = Dlc(dlcId=3, dexId=15, name="The Crown Tundra", nameId="crown-tundra")
-
-	assert d.dlcId == 3
-	assert d.name == "The Crown Tundra"
-
-
-# --- Game ----------------------------------------------------------------
-
-def test_game_to_csv_string_with_single_region():
-	g = Game(1, 1, "Red", "red", ["Kanto"])
-	assert g.toCsvString() == '1,1,"Red",red,"{Kanto}"\n'
-
-
-def test_game_to_csv_string_with_multiple_regions():
-	g = Game(15, 7, "HeartGold", "heartgold", ["Kanto", "Johto", "Hoenn", "Sinnoh"])
-	assert g.toCsvString() == '15,7,"HeartGold",heartgold,"{Kanto,Johto,Hoenn,Sinnoh}"\n'
-
-
-def test_game_to_csv_string_with_empty_regions():
-	g = Game(1, 1, "Red", "red", [])
-	assert g.toCsvString() == '1,1,"Red",red,"{}"\n'
-
-
-def test_game_is_in_dex():
-	g = Game(1, 1, "Red", "red", ["Kanto"])
-	assert g.isInDex(1) is True
-	assert g.isInDex(2) is False
-
-
-def test_game_model_dump_by_alias_matches_csv_exporter_header():
-	g = Game(1, 1, "Red", "red", ["Kanto"])
-	dumped = g.model_dump(by_alias=True)
-
-	header_columns = csv_exporter.getCsvHeader(Game).strip().split(",")
-
-	for column in header_columns:
-		assert column in dumped
-
-	assert dumped["game_id"] == 1
-	assert dumped["dex_id"] == 1
-	assert dumped["name_id"] == "red"
-
-
-def test_game_populate_by_name_allows_construction_by_alias():
-	g = Game.model_validate({"game_id": 2, "dex_id": 1, "name": "Blue", "name_id": "blue", "regions": ["Kanto"]})
-
-	assert g.gameId == 2
-	assert g.dexId == 1
-	assert g.nameId == "blue"
-
-
-def test_game_construction_by_keyword_field_name():
-	g = Game(gameId=3, dexId=1, name="Yellow", nameId="yellow", regions=["Kanto"])
-
-	assert g.gameId == 3
-	assert g.name == "Yellow"
 
 
 # --- GameCharacter -------------------------------------------------------
@@ -428,103 +317,67 @@ def test_dex_character_to_csv_string():
 	assert dc.toCsvString() == '1,5,0001,"thumb.png"\n'
 
 
-# --- DlcCharacter ------------------------------------------------------
+# --- GameMove -------------------------------------------------------------
 
-def test_dlc_character_defaults():
-	dc = DlcCharacter("bulbasaur", "0001", "thumb.png")
-	assert dc.dlcId == 0
-	assert dc.characterId == 0
-
-
-def test_dlc_character_to_csv_string():
-	dc = DlcCharacter("bulbasaur", "0001", "thumb.png")
-	dc.dlcId = 2
-	dc.characterId = 5
-	assert dc.toCsvString() == '2,5,0001,"thumb.png"\n'
-
-
-def test_dlc_character_model_dump_by_alias_uses_snake_case():
-	dc = DlcCharacter("bulbasaur", "0001", "thumb.png")
-	dc.dlcId = 2
-	dc.characterId = 5
-	dumped = dc.model_dump(by_alias=True)
-
-	assert dumped["dlc_id"] == 2
-	assert dumped["character_id"] == 5
-	assert dumped["pokemon_id"] == "0001"
-	assert dumped["thumbnail_image"] == "thumb.png"
-	assert dumped["name_id"] == "bulbasaur"
-
-
-def test_dlc_character_populate_by_name_allows_construction_by_alias():
-	dc = DlcCharacter.model_validate({
-		"name_id": "bulbasaur",
-		"pokemon_id": "0001",
-		"thumbnail_image": "thumb.png",
-		"dlc_id": 2,
-		"character_id": 5,
-	})
-
-	assert dc.nameId == "bulbasaur"
-	assert dc.dlcId == 2
-	assert dc.characterId == 5
-
-
-# --- DexMove -------------------------------------------------------------
-
-def test_dex_move_defaults_before_learned_by_set():
-	m = DexMove("Thunderbolt", "thunderbolt", "90", "100")
+def test_game_move_defaults_before_learned_by_set():
+	m = GameMove("Thunderbolt", "thunderbolt", "90", "100")
 	assert m.learnedBy == ""
 	assert m.learnedById == ""
 
 
-def test_dex_move_set_learned_by_info():
-	m = DexMove("Thunderbolt", "thunderbolt", "90", "100")
+def test_game_move_set_learned_by_info():
+	m = GameMove("Thunderbolt", "thunderbolt", "90", "100")
 	m.setLearnedByInfo("TM", "25")
 	assert m.learnedBy == "TM"
 	assert m.learnedById == "25"
 
 
-# --- CharacterDexMove --------------------------------------------------
+# --- GameCharacterMove --------------------------------------------------
 
-def test_character_dex_move_converts_dex_name_to_dex_name_id():
-	move = DexMove("Tackle", "tackle", "40", "100")
-	cdm = CharacterDexMove(5, "Sword/Shield", 8, move)
-	assert cdm.dexNameId == "sword-shield"
+def test_game_character_move_converts_dex_name_to_dex_name_id():
+	move = GameMove("Tackle", "tackle", "40", "100")
+	row = GameCharacterMove(5, "Sword/Shield", 8, move)
+	assert row.dexNameId == "sword-shield"
 
 
-def test_character_dex_move_copies_fields_from_dex_move():
-	move = DexMove("Tackle", "tackle", "40", "100")
+def test_game_character_move_copies_fields_from_game_move():
+	move = GameMove("Tackle", "tackle", "40", "100")
 	move.setLearnedByInfo("Lv.", "7")
 
-	cdm = CharacterDexMove(5, "Sword/Shield", 8, move)
+	row = GameCharacterMove(5, "Sword/Shield", 8, move)
 
-	assert cdm.characterId == 5
-	assert cdm.generation == 8
-	assert cdm.moveName == "Tackle"
-	assert cdm.moveNameId == "tackle"
-	assert cdm.power == "40"
-	assert cdm.accuracy == "100"
-	assert cdm.learnedBy == "Lv."
-	assert cdm.learnedById == "7"
-
-
-def test_character_dex_move_get_is_suggested():
-	move = DexMove("Tackle", "tackle", "40", "100")
-	cdm = CharacterDexMove(5, "Sword/Shield", 8, move)
-	assert cdm.getIsSuggested() == "f"
-	cdm.isSuggested = True
-	assert cdm.getIsSuggested() == "t"
+	assert row.characterId == 5
+	assert row.generation == 8
+	assert row.moveName == "Tackle"
+	assert row.moveNameId == "tackle"
+	assert row.power == "40"
+	assert row.accuracy == "100"
+	assert row.learnedBy == "Lv."
+	assert row.learnedById == "7"
 
 
-def test_character_dex_move_to_csv_string():
-	move = DexMove("Tackle", "tackle", "40", "100")
+def test_game_character_move_get_is_suggested():
+	move = GameMove("Tackle", "tackle", "40", "100")
+	row = GameCharacterMove(5, "Sword/Shield", 8, move)
+	assert row.getIsSuggested() == "f"
+	row.isSuggested = True
+	assert row.getIsSuggested() == "t"
+
+
+def test_game_character_move_to_csv_string():
+	move = GameMove("Tackle", "tackle", "40", "100")
 	move.setLearnedByInfo("Lv.", "7")
 
-	cdm = CharacterDexMove(5, "Sword/Shield", 8, move)
-	cdm.characterDexMoveId = 1
-	cdm.dexId = 15
-	cdm.moveId = 33
-	cdm.isSuggested = True
+	row = GameCharacterMove(5, "Sword/Shield", 8, move)
+	row.gameCharacterMoveId = 1
+	row.dexId = 15
+	row.moveId = 33
+	row.isSuggested = True
 
-	assert cdm.toCsvString() == "1,15,5,33,8,t,40,100,Lv.,7\n"
+	assert row.toCsvString() == "1,15,5,33,8,t,40,100,Lv.,7\n"
+
+
+def test_character_seed_derives_name_id():
+	seed = CharacterSeed("Mr. Mime")
+	assert seed.nameId == "mr-mime"
+	assert seed.characterId == 0

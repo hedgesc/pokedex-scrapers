@@ -2,13 +2,10 @@
 "infocard" grid markup (a repeated <div class="infocard"> card - thumbnail,
 pokedex number, name, types).
 
-This grid is the whole page for a per-game/per-dlc dex listing and is
-grouped by generation on the national dex listing, so more than one
-pipeline's PokemonDb*Source needs it - character_pipeline (national dex),
-game_pipeline (per-game dex), and dlc_pipeline (per-dlc dex) all wrap this
-same card shape in their own page classes. Kept here instead of private to
-any one of them so none of them has to reach into another pipeline's
-underscore-prefixed _pokemondb_html.py to reuse it.
+This grid is the whole page for a dex listing and is grouped by generation
+on the national dex listing. characters_pipeline and dexes_pipeline both
+wrap this same card shape. It lives here so neither pipeline reaches into
+the other's html module to reuse it.
 """
 
 from bs4 import Tag

@@ -1,17 +1,7 @@
 """Configuration settings for the pokemondb_net_scrapers package."""
 
-from pydantic import computed_field, BaseModel, Field
+from pydantic import computed_field
 from pydantic_settings import BaseSettings, SettingsConfigDict
-
-class CacheConfig(BaseModel):
-    characters_key_prefix: str = "characters:"
-    dexes_key_prefix: str = "dexes:"
-    moves_key_prefix: str = "moves:"
-    ttl_seconds: int | None = Field(default=None, description="Optional cache entry lifetime, if backend supports it")
-    raise_on_cache_error: bool = Field(
-        default=False,
-        description="If False, a cache.set() failure is logged and skipped rather than failing the whole build.",
-    )
 
 
 class Settings(BaseSettings):
@@ -20,14 +10,8 @@ class Settings(BaseSettings):
     base_url: str = "https://pokemondb.net/"
     current_gen: int = 8
 
-    # Backs RedisCacheClient - shared across pipeline jobs so cross-entity id
-    # resolution (nameId -> id) works when each pipeline runs as its own RQ
-    # job rather than a step of one in-process script.
     redis_url: str = "redis://localhost:6379/0"
 
-    # Where each pipeline job writes its exported CSV. Uploading it
-    # elsewhere (if at all) is the job scheduler's responsibility, not this
-    # package's - see jobs.py.
     csv_output_folder: str = "data\\"
     characters_csv_file: str = "characters.csv"
     dexes_csv_file: str = "dexes.csv"

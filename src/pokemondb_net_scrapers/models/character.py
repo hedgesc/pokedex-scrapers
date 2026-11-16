@@ -65,28 +65,38 @@ class Character(BaseModel):
     return "{0},{1},{2},\"{3}\",{4},{5},{6},{7},{8},{9},{10},{11},{12},\"{{{13}}}\",\"{{{14}}}\",{15},{16},\"{17}\",\"{18}\",\"{19}\"\n".format(self.characterId, self.pokemonId, self.generation, self.name, self.total, self.hp, self.attack, self.defense, self.specialAttack, self.specialDefense, self.speed, self.nameId, self.alternateName, _types, _abilities, self.finalEvolutionId, self.getIsVisible(), self.thumbnailUrl, self.imageUrl1, self.imageUrl2)
 
 
-class BaseStats:
-  def __init__(self):
-    self.total = None
-    self.hp = None
-    self.attack = None
-    self.defense = None
-    self.specialAttack = None
-    self.specialDefense = None
-    self.speed = None
+class BaseStats(BaseModel):
+  total: int | None = None
+  hp: int | None = None
+  attack: int | None = None
+  defense: int | None = None
+  specialAttack: int | None = None
+  specialDefense: int | None = None
+  speed: int | None = None
 
 
-class CharacterTab:
-  def __init__(self, index, tab):
-    self.index = index
-    self.name = tab.get_text()
-    self.panel = tab['href']
+class CharacterTab(BaseModel):
+  index: int
+  name: str
+  panel: str
 
-  def isAlternateForm(self):
+  def __init__(self, index: int | None = None, tab=None, **data) -> None:
+    if tab is not None:
+      data.setdefault("index", index)
+      data.setdefault("name", tab.get_text())
+      data.setdefault("panel", tab["href"])
+    super().__init__(**data)
+
+  def isAlternateForm(self) -> bool:
     return self.index > 0
 
 
-class DexMovesTab:
-  def __init__(self, tab):
-    self.name = tab.get_text()
-    self.panelId = tab["href"]
+class DexMovesTab(BaseModel):
+  name: str
+  panelId: str
+
+  def __init__(self, tab=None, **data) -> None:
+    if tab is not None:
+      data.setdefault("name", tab.get_text())
+      data.setdefault("panelId", tab["href"])
+    super().__init__(**data)
